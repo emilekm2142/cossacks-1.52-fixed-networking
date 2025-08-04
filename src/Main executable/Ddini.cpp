@@ -144,6 +144,18 @@ static void UpdatePaletteLUT() {
 
 __declspec(dllexport) void FlipPages(void) {
     std::lock_guard<std::mutex> lock(renderMutex);
+    static bool currentVSync = false;
+    static bool needInitialCenter = true;  // Флаг для первоначального центрирования
+    static int lastWindowPosX = INT_MIN;   // Последняя известная позиция окна
+    static int lastWindowPosY = INT_MIN;
+
+    // Обновление VSync с учетом и игры, и редактора
+    if (gRenderer && (currentVSync != (InGame || InEditor))) {
+        SDL_RenderSetVSync(gRenderer, (InGame || InEditor) ? 1 : 0);
+        currentVSync = (InGame || InEditor);
+    }
+
+    // Проверка на ошибки рендерера
     if (!bActive || DDError) return;
     if (!gRenderer || !gPrimaryTexture || !gBackTexture) {
         char err[256], msg[256];
@@ -152,6 +164,26 @@ __declspec(dllexport) void FlipPages(void) {
         MessageBoxA(NULL, msg, "SDL Error", MB_OK | MB_ICONERROR);
         return;
     }
+
+    // Логика центрирования окна
+    if (InGame || InEditor) {
+        needInitialCenter = true;  // При входе в игру/редактор разрешаем новое центрирование
+    }
+    else {
+        // Получаем текущую позицию окна
+        int currentX, currentY;
+        SDL_GetWindowPosition(gWindow, &currentX, &currentY);
+
+        // Если позиция не определена или окно нужно центрировать
+        if (needInitialCenter || (currentX == lastWindowPosX && currentY == lastWindowPosY)) {
+            // Принудительное центрирование с обновлением позиции
+            SDL_SetWindowPosition(gWindow, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
+            SDL_GetWindowPosition(gWindow, &lastWindowPosX, &lastWindowPosY);  // Запоминаем новую позицию
+            needInitialCenter = false;
+        }
+    }
+
+    // Выделение буфера при необходимости
     if (!rgbBuffer) {
         rgbBuffer = (Uint32*)malloc(RealLx * RealLy * sizeof(Uint32));
         if (!rgbBuffer) {
@@ -162,27 +194,21 @@ __declspec(dllexport) void FlipPages(void) {
             return;
         }
     }
-    if (!InGame) {
+
+    // Очистка буфера в режиме меню
+    if (!InGame && !InEditor) {
         memset(rgbBuffer, 0, RealLx * RealLy * sizeof(Uint32));
     }
+
+    // Многопоточная обработка пикселей (используем все ядра)
     byte* src = (byte*)offScreenPtr + MaxSizeX * 32;
     Uint32* dst = rgbBuffer;
-    unsigned int threadCount = std::thread::hardware_concurrency();
-    if (threadCount == 0) threadCount = 1; // На случай, если hardware_concurrency вернёт 0
+    unsigned int threadCount = std::max<unsigned int>(1u, std::thread::hardware_concurrency());
 
-    // Определяем количество потоков в зависимости от разрешения
-    if (threadCount == 1) {
-        threadCount = 1; // Одно ядро для одноядерных систем
-    }
-    else if (RealLx <= 1920 && RealLy <= 1080) {
-        threadCount = (threadCount < 4) ? threadCount : 4; // До 4 ядер для 1920x1080
-    } // Для разрешений выше 1920x1080 используем все доступные ядра
-
-    int linesPerThread = RealLy / threadCount;
-
-    // Многопоточная обработка пикселей
     std::vector<std::thread> threads;
     threads.reserve(threadCount);
+    int linesPerThread = RealLy / threadCount;
+
     for (unsigned int i = 0; i < threadCount; ++i) {
         int startY = i * linesPerThread;
         int endY = (i == threadCount - 1) ? RealLy : startY + linesPerThread;
@@ -196,8 +222,9 @@ __declspec(dllexport) void FlipPages(void) {
             }
             });
     }
-    for (auto& t : threads) t.join(); // Ожидаем завершения всех потоков
+    for (auto& t : threads) t.join();
 
+    // Обновление текстуры и рендеринг
     SDL_Texture* target = window_mode ? gBackTexture : gPrimaryTexture;
     if (SDL_UpdateTexture(target, NULL, rgbBuffer, RealLx * sizeof(Uint32)) != 0) {
         char err[256], msg[256];
@@ -206,14 +233,15 @@ __declspec(dllexport) void FlipPages(void) {
         MessageBoxA(NULL, msg, "SDL Error", MB_OK | MB_ICONERROR);
         return;
     }
-    if (SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255) != 0 ||
-        SDL_RenderClear(gRenderer) != 0) {
+
+    if (SDL_SetRenderDrawColor(gRenderer, 0, 0, 0, 255) != 0 || SDL_RenderClear(gRenderer) != 0) {
         char err[256], msg[256];
         sprintf(err, "SDL render setup failed: %s", SDL_GetError());
         ConvertUTF8ToWindows1251(err, msg, 256);
         MessageBoxA(NULL, msg, "SDL Error", MB_OK | MB_ICONERROR);
         return;
     }
+
     SDL_Rect dstRect = { 0, 0, RealLx, RealLy };
     if (SDL_RenderCopy(gRenderer, target, NULL, &dstRect) != 0) {
         char err[256], msg[256];
@@ -222,9 +250,10 @@ __declspec(dllexport) void FlipPages(void) {
         MessageBoxA(NULL, msg, "SDL Error", MB_OK | MB_ICONERROR);
         return;
     }
-    printf("FlipPages: Rendering with RealLx=%d, RealLy=%d, InGame=%d, Threads=%u\n", RealLx, RealLy, InGame, threadCount);
+
     SDL_RenderPresent(gRenderer);
 }
+
 
 void LockSurface(void) {
     std::lock_guard<std::mutex> lock(renderMutex);
@@ -468,9 +497,6 @@ bool CreateDDObjects(HWND hwnd_param) {
     }
 
     Uint32 rendererFlags = SDL_RENDERER_ACCELERATED;
-    if (InGame || InEditor) {
-        rendererFlags |= SDL_RENDERER_PRESENTVSYNC;
-    }
     gRenderer = SDL_CreateRenderer(gWindow, -1, rendererFlags);
     if (!gRenderer) {
         char errorMsg[256], convertedMsg[256];
