@@ -100,7 +100,7 @@ Manual project build: To manually build the project, use Visual Studio 2019 and 
 
 # 📥 Where to Download?
 
-You can download the updated version of the game [here](https://mega.nz/file/DREFUR4A#jhdSwraPnnr_JdXZmHGOlPmV4WI7Ov_9c6aElQXdty4) 🌐
+You can download the updated version of the game [here](https://mega.nz/file/CYNR2ZST#oG9LLzhV_BoaUnfb3JSD0QVpRpIBt3WqPhRvnS3MCLE) 🌐
 
 ## ⚠️ A backup copy of the project and the source code are also available on the Internet Archive.
 [Internet Archive](https://archive.org/details/cossacks-back-to-war-v-1.52-2025_202506)
@@ -131,8 +131,8 @@ If you happen to come across any archive on the web, you may need the following 
 
 | File                                                    | SHA‑256                                                         |
 |---------------------------------------------------------|----------------------------------------------------------------------|
-| Cossacks Back to War v1.52 (2025).zip                   | ec1b476abcd781a3a7503065d95b43efa8e23ed5cebfa6c431d3fe7c4484b8ff |
-| cossacks-1.52-source.zip                  | 327eca57fc6a766ba40aec95e47974e696c4278b3b68240272a0d0f5885c0afa |
+| Cossacks Back to War v1.52 (2025).zip                   | 1cc747f96378a15cb5c23e1ae8293dcb41fd36a65826b1c0627ef8a16c8c58c5 |
+| cossacks-1.52-source.zip                  | 8fc0b90a0b97687eca93957a8a1a23235a0987a3bfa54bc62d8c3d9e5827296a |
 
 You will also need the [Microsoft Visual C++ 2015 Redistributable (x86)](https://www.microsoft.com/en-us/download/details.aspx?id=53587) for the game to work correctly. 💻
 <hr>
@@ -247,7 +247,7 @@ You will also need the [Microsoft Visual C++ 2015 Redistributable (x86)](https:/
 
 #  📥 Где скачать?
 
-Вы можете скачать обновлённую версию игры по [ссылке](https://mega.nz/file/DREFUR4A#jhdSwraPnnr_JdXZmHGOlPmV4WI7Ov_9c6aElQXdty4) . 🌐
+Вы можете скачать обновлённую версию игры по [ссылке](https://mega.nz/file/CYNR2ZST#oG9LLzhV_BoaUnfb3JSD0QVpRpIBt3WqPhRvnS3MCLE) . 🌐
 
 ### ⚠️  Резервная копия проекта и исходный код также доступны в Internet Archive.
 
@@ -280,8 +280,8 @@ You will also need the [Microsoft Visual C++ 2015 Redistributable (x86)](https:/
 Если вы вдруг наткнётесь на какой-то архив на просторах сети, вам могут понадобиться следующие контрольные суммы для проверки целостности файлов:
 | Файл                                                    | SHA‑256                                                         |
 |---------------------------------------------------------|----------------------------------------------------------------------|
-| Cossacks Back to War v1.52 (2025).zip                   | ec1b476abcd781a3a7503065d95b43efa8e23ed5cebfa6c431d3fe7c4484b8ff |
-| cossacks-1.52-source.zip                    | 327eca57fc6a766ba40aec95e47974e696c4278b3b68240272a0d0f5885c0afa |
+| Cossacks Back to War v1.52 (2025).zip                   | 1cc747f96378a15cb5c23e1ae8293dcb41fd36a65826b1c0627ef8a16c8c58c5 |
+| cossacks-1.52-source.zip                    | 8fc0b90a0b97687eca93957a8a1a23235a0987a3bfa54bc62d8c3d9e5827296a |
 
 Также потребуется [Распространяемый компонент Microsoft Visual C++ 2015 (x86)](https://www.microsoft.com/ru-ru/download/details.aspx?id=53587) для корректной работы игры. 💻
 
