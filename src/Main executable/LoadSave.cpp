@@ -2986,17 +2986,28 @@ void PreSaveGame( SaveBuf* SB, char* Messtr, int ID )
 	xBlockWrite( SB, GMID, 64 );
 }
 
+#include <string> // Чтобы не конфликтовать с остальным кодом include будет тут.
+
 void SaveGame( char* Name, char* Messtr, int ID )
 {
 	SaveBuf SB;
-	PreSaveGame( &SB, Messtr, ID );
+	PreSaveGame(&SB, Messtr, ID);
 
+	// Определяем, запущен ли /reloaded
+	LPSTR cmdRaw = GetCommandLineA();
+	std::string cmdLine = cmdRaw ? cmdRaw : "";
+	std::string cmdLower = cmdLine;
+	for (char& c : cmdLower) c = static_cast<char>(tolower(c));
+	bool reloaded = (cmdLower.find("/reloaded") != std::string::npos);
 	char ttt[128];
-	strcpy( ttt, Name );
-
-	if (!strstr( ttt, ".sav" ))
-	{
-		strcat( ttt, ".sav" );
+	strcpy(ttt, Name);
+	if (!reloaded) {
+		if (!strstr(ttt, ".sav"))
+			strcat(ttt, ".sav");
+	}
+	else {
+		if (!strstr(ttt, ".rld"))
+			strcat(ttt, ".rld");
 	}
 
 	ResFile f1 = RRewrite( ttt );

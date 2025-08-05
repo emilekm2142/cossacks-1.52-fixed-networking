@@ -6915,7 +6915,18 @@ void SFLB_CreateGamesList(ListBox* LB)
 {
 	WIN32_FIND_DATA FD;
 	ClearNames();
-	HANDLE HF = FindFirstFile("*.sav", &FD);
+	// Определяем режим /reloaded
+	LPSTR cmdRaw = GetCommandLineA();
+	std::string cmdLine = cmdRaw ? cmdRaw : "";
+	std::string cmdLower = cmdLine;
+	for (char& c : cmdLower) c = static_cast<char>(tolower(c));
+	bool reloaded = (cmdLower.find("/reloaded") != std::string::npos);
+	HANDLE HF;
+	if (!reloaded)
+		HF = FindFirstFile("*.sav", &FD);
+	else
+		HF = FindFirstFile("*.rld", &FD);
+
 	if (HF != INVALID_HANDLE_VALUE)
 	{
 		InstallName(LB, &FD, "");
