@@ -100,7 +100,10 @@ Manual project build: To manually build the project, use Visual Studio 2019 and 
 
 # 📥 Where to Download?
 
-You can download the updated version of the game [here](https://mega.nz/file/CYNR2ZST#oG9LLzhV_BoaUnfb3JSD0QVpRpIBt3WqPhRvnS3MCLE) 🌐
+You can download the updated version of the game [here](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20%282025%29.zip) 🌐
+
+# 🗂️ What about the classic version without mods, but with the bug fixes from version 1.42?
+This is Cossacks: Back to War 1.52 Classic Edition. It’s available as a separate archive, which you can download [here](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20Classic%20Edition.zip) . This version doesn’t include any built-in mods, but all new cheat codes still work, as they are written into the game engine rather than the game resources.
 
 ## ⚠️ A backup copy of the project and the source code are also available on the Internet Archive.
 [Internet Archive](https://archive.org/details/cossacks-back-to-war-v-1.52-2025_202506)
@@ -132,6 +135,7 @@ If you happen to come across any archive on the web, you may need the following 
 | File                                                    | SHA‑256                                                         |
 |---------------------------------------------------------|----------------------------------------------------------------------|
 | Cossacks Back to War v1.52 (2025).zip                   | 1cc747f96378a15cb5c23e1ae8293dcb41fd36a65826b1c0627ef8a16c8c58c5 |
+| Cossacks Back to War v1.52 Classic Edition.zip                   | 927deb5b4dfa9ab76973b235f484858d6895ce023f724623928fcce9f0d4f3d3 |
 | cossacks-1.52-source.zip                  | 8fc0b90a0b97687eca93957a8a1a23235a0987a3bfa54bc62d8c3d9e5827296a |
 
 You will also need the [Microsoft Visual C++ 2015 Redistributable (x86)](https://www.microsoft.com/en-us/download/details.aspx?id=53587) for the game to work correctly. 💻
@@ -247,7 +251,11 @@ You will also need the [Microsoft Visual C++ 2015 Redistributable (x86)](https:/
 
 #  📥 Где скачать?
 
-Вы можете скачать обновлённую версию игры по [ссылке](https://mega.nz/file/CYNR2ZST#oG9LLzhV_BoaUnfb3JSD0QVpRpIBt3WqPhRvnS3MCLE) . 🌐
+Вы можете скачать обновлённую версию игры по [ссылке](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20%282025%29.zip) . 🌐
+
+# 🗂️ А как же классическая версия без модов, но с исправлениями ошибок версии 1.42?
+
+Это Cossacks: Back to War 1.52 Classic Edition. Она доступна в отдельном архиве, который вы можете загрузить [здесь](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20Classic%20Edition.zip) . В этой версии нет встроенных дополнений, но работают все новые чит-коды, так как они прописаны в движке, а не в ресурсах игры.
 
 ### ⚠️  Резервная копия проекта и исходный код также доступны в Internet Archive.
 
@@ -281,6 +289,7 @@ You will also need the [Microsoft Visual C++ 2015 Redistributable (x86)](https:/
 | Файл                                                    | SHA‑256                                                         |
 |---------------------------------------------------------|----------------------------------------------------------------------|
 | Cossacks Back to War v1.52 (2025).zip                   | 1cc747f96378a15cb5c23e1ae8293dcb41fd36a65826b1c0627ef8a16c8c58c5 |
+| Cossacks Back to War v1.52 Classic Edition.zip                   | 927deb5b4dfa9ab76973b235f484858d6895ce023f724623928fcce9f0d4f3d3 |
 | cossacks-1.52-source.zip                    | 8fc0b90a0b97687eca93957a8a1a23235a0987a3bfa54bc62d8c3d9e5827296a |
 
 Также потребуется [Распространяемый компонент Microsoft Visual C++ 2015 (x86)](https://www.microsoft.com/ru-ru/download/details.aspx?id=53587) для корректной работы игры. 💻
