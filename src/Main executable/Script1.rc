@@ -10,8 +10,8 @@ LANGUAGE LANG_RUSSIAN, SUBLANG_DEFAULT
 #pragma code_page(1251)
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,3,3,7
- PRODUCTVERSION 1,3,3,7
+ FILEVERSION 1,5,2,0
+ PRODUCTVERSION 1,5,2,0
  FILEFLAGSMASK 0x3fL
  FILEFLAGS 0x0L
  FILEOS 0x40004L
@@ -25,14 +25,14 @@ BEGIN
             VALUE "Comments", "\0"
             VALUE "CompanyName", ""//"-GSC-\0" //FUNNY: change value back to original and you'll get UAC prompt o_O?
             VALUE "FileDescription", "Cossacks: Back to War\0"
-            VALUE "FileVersion", "1, 3, 3, 7\0"
+            VALUE "FileVersion", "1, 5, 2, 0\0"
             VALUE "InternalName", "dmcr\0"
-            VALUE "LegalCopyright", "Updated MR.CODERMAN in 2025,Revamped by Ereb in 2017\0"
+            VALUE "LegalCopyright", "MR.CODERMAN, 2025\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "dmcr.exe\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "Cossacks: Back to War\0"
-            VALUE "ProductVersion", "1, 3, 3, 7\0"
+            VALUE "ProductVersion", "1, 5, 2, 0\0"
             VALUE "SpecialBuild", "\0"
         END
     END
