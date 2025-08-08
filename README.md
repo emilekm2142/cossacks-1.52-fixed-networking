@@ -93,10 +93,6 @@ Mod installation: You can add your own mods by simply uploading the override.gsc
 
 Testing on ARM versions of Windows and macOS: The game has been tested on ARM versions of Windows and macOS running on Apple Silicon processors. In both cases, the game runs smoothly and without crashes. 🍏💻
 
-#  👨‍💻 For Developers
-
-Code usage recommendations: It is recommended to use the code of version 1.52 as the basis for future game versions, as it is the most stable and improved version compared to 1.42. 📂
-Manual project build: To manually build the project, use Visual Studio 2019 and Windows 11. All necessary files for building are in the Source archive. 🔧
 
 # 📥 Where to Download?
 
@@ -107,15 +103,42 @@ This is Cossacks: Back to War 1.52 Classic Edition. It’s available as a separa
 
 # 🖥️ Windows XP Support — For True Retro Enthusiasts
 
-While our main focus is on modern operating systems, we haven’t forgotten the users of Windows XP — the legendary OS that became a symbol of its era. Version 1.52 already runs successfully on Windows XP SP3, and we’re actively developing a special edition — Cossacks: Back to War 1.52 Legacy Edition — tailored specifically for this system.
+While our main focus remains on modern operating systems, we haven’t forgotten about Windows XP users — the legendary OS that became a symbol of an entire era.
 
-This version will include all the features and improvements of 1.52, including full multiplayer support compatible with players on Windows 11, Linux, and macOS.
+
+Starting August 9, 2025, Cossacks: Back to War 1.52 Legacy Edition is available, specially adapted for Windows XP SP3.
+
+
+System Requirements:
+
+Processor: Minimum Intel Core 2 Duo
+
+RAM: From 256 MB (512 MB or more recommended)
+
+Features:
+
+Full compatibility with Windows XP SP3
+
+All features and improvements from version 1.52
+
+Fully functional multiplayer, compatible with players on Windows 11, Linux, and macOS
+<hr>
+📥 You can download Cossacks: Back to War 1.52 Legacy Edition
+
+[here](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20LE%20%282025%29.zip).
+
+If you prefer the classic version without mods but with integrated enhancements, choose Cossacks: Back to War v1.52 LE Classic Edition via
+[this link](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20LE%20Classic%20Edition.zip).
+
+<hr>
 
 # ⚠️ Important: Support for Windows 9x (95/98/ME) and Windows 2000 will not be implemented for the following reasons:
 
 These systems lack support for multi-core processors;
 Version 1.52 requires at least 256 MB of RAM and a dual-core CPU (quad-core or higher recommended);
 Even with deep optimization, the game remains too resource-intensive for platforms without SMP (Symmetric Multiprocessing) — multithreading is a core part of the new engine version.
+
+<hr>
 
 ## ⚠️ A backup copy of the project and the source code are also available on the Internet Archive.
 [Internet Archive](https://archive.org/details/cossacks-back-to-war-v-1.52-2025_202506)
@@ -134,6 +157,17 @@ Enjoy the game! 🎮
 
 I would like to thank the esteemed ereb-thanatos for the massive work on version 1.42. GitHub repository [ereb-thanatos](https://github.com/ereb-thanatos/cossacks-revamp-2017)
 
+
+#  👨‍💻 For Developers
+
+Code usage recommendations: It is recommended to use the code of version 1.52 as the basis for future game versions, as it is the most stable and improved version compared to 1.42. 📂
+
+Manual project build: To manually build the project, use Visual Studio 2019 and Windows 11. All necessary files for building are in the Source archive. 🔧
+
+The repository for Cossacks: Back to War 1.52 Legacy Edition is available [here](https://github.com/MisterCoderman/Cossacks2025-Legacy)
+
+
+
 #  ⚖️ Copyright Respect and Developer Support
 
 The Cossacks 1.52 project by MR.CODERMAN is solely intended to support users who have legally purchased the original Cossacks: Back to War and want to enjoy it on modern computers. 🏆
@@ -147,8 +181,11 @@ If you happen to come across any archive on the web, you may need the following 
 | File                                                    | SHA‑256                                                         |
 |---------------------------------------------------------|----------------------------------------------------------------------|
 | Cossacks Back to War v1.52 (2025).zip                   | cac2dbca201890a9d07628eea6d908aca2786d7ad16af48793278f68a870371f |
+| Cossacks Back to War v1.52 LE (2025).zip                   | 01feb2b9f6085876ba3627c5cef89b354b473ea8a661030d956fd5eb8b8c7ca7 |
 | Cossacks Back to War v1.52 Classic Edition.zip                   | 865495e3497f933195fc752398716193924810f26f34b1ab8b1f18ec39490303 |
-| cossacks-1.52-source.zip                  | 195556674cf304dba49b868be8bc2169abf79c4c5df314363db53a3dd81ca6b9 |
+| Cossacks Back to War v1.52 LE Classic Edition.zip                  | 6ca00be8330c261c6a485f9937e6a83c2a33d25f03a98dc104a54fb454753993 |
+| cossacks-revamp-2025-1.52-source.zip                  | 195556674cf304dba49b868be8bc2169abf79c4c5df314363db53a3dd81ca6b9 |
+| cossacks-revamp-2025-1.52-LE-source.zip                 | 42e675834f37e6a18c1338c9e89d513906c5ba4d4d5ca23c55da151cd1b24687 |
 
 
 <hr>
@@ -256,10 +293,6 @@ If you happen to come across any archive on the web, you may need the following 
 
 Тестирование на ARM-версии Windows и macOS: Игра была протестирована на ARM-версии Windows и macOS на процессорах Apple Silicon. В обоих случаях игра работает стабильно и без сбоев. 🍏💻
 
-#  👨‍💻 Для разработчиков
-
-Рекомендации по использованию кода: Рекомендуется использовать код версии 1.52 как основу для будущих версий игры, так как она является самой стабильной и улучшенной версией по сравнению с 1.42. 📂
-Сборка проекта вручную: Для сборки проекта вручную используйте Visual Studio 2019 и Windows 11. Все необходимые файлы для сборки находятся в архиве Source. 🔧
 
 #  📥 Где скачать?
 
@@ -271,9 +304,33 @@ If you happen to come across any archive on the web, you may need the following 
 
 # 🖥️ Поддержка Windows XP — для настоящих ценителей ретро
 
-Несмотря на основной упор на современные операционные системы, мы не забыли о пользователях Windows XP — легендарной ОС, ставшей символом своей эпохи. Версия 1.52 уже успешно запускается на Windows XP SP3, и в данный момент активно ведётся разработка специальной редакции — Cossacks: Back to War 1.52 Legacy Edition — адаптированной для этой системы.
+Несмотря на основной фокус на современные операционные системы, мы не забыли о пользователях Windows XP — легендарной ОС, ставшей символом целой эпохи.
 
-В этой версии будут доступны все функции и улучшения 1.52, включая полноценный мультиплеер, совместимый с игроками на Windows 11, Linux и macOS.
+С 9 августа 2025 года доступна Cossacks: Back to War 1.52 Legacy Edition, специально адаптированная для Windows XP SP3.
+
+Системные требования:
+
+Процессор: минимум Intel Core 2 Duo
+
+Оперативная память: от 256 МБ (рекомендуется от 512 МБ и выше)
+
+Особенности:
+
+Полная совместимость с Windows XP SP3
+
+Все функции и улучшения версии 1.52
+
+Полноценный мультиплеер, совместимый с игроками на Windows 11, Linux и macOS
+
+<hr>
+
+📥 Скачать Cossacks: Back to War 1.52 Legacy Edition можно
+[здесь](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20LE%20%282025%29.zip).
+
+
+Если вам нужна классическая версия без модов, но с интегрированными улучшениями — выберите Cossacks: Back to War v1.52 LE Classic Edition по
+[этой ссылке](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20LE%20Classic%20Edition.zip).
+<hr>
 
 # ⚠️ Важно: Поддержка Windows 9x (95/98/ME) и Windows 2000 реализовываться не будет по следующим причинам:
 
@@ -281,6 +338,7 @@ If you happen to come across any archive on the web, you may need the following 
 Версия 1.52 требует минимум 256 МБ оперативной памяти и двухъядерный процессор (рекомендуется 4 ядра и более);
 Даже при глубокой оптимизации игра остаётся слишком ресурсоёмкой для платформ без SMP (Symmetric Multiprocessing) — многопоточность лежит в основе новой версии движка.
 
+<hr>
 
 ### ⚠️  Резервная копия проекта и исходный код также доступны в Internet Archive.
 
@@ -301,6 +359,18 @@ If you happen to come across any archive on the web, you may need the following 
 
 Хочу выразить благодарность за огромную работу над версией 1.42 уважаемому ereb-thanatos. GitHub репозиторий [ereb-thanatos](https://github.com/ereb-thanatos/cossacks-revamp-2017)
 
+
+#  👨‍💻 Для разработчиков
+
+Рекомендации по использованию кода: Рекомендуется использовать код версии 1.52 как основу для будущих версий игры, так как она является самой стабильной и улучшенной версией по сравнению с 1.42. 📂
+
+Сборка проекта вручную: Для сборки проекта вручную используйте Visual Studio 2019 и Windows 11. Все необходимые файлы для сборки находятся в архиве Source. 🔧
+
+Репозиторий версии Cossacks: Back to War 1.52 Legacy Edition находится [здесь](https://github.com/MisterCoderman/Cossacks2025-Legacy)
+
+
+ 
+
 # ⚖️ Уважение авторских прав и поддержка разработчиков
 
 Проект Cossacks 1.52 от MR.CODERMAN направлен исключительно на поддержку пользователей, которые законно приобрели оригинальную версию игры «Казаки: Снова Война» и хотят наслаждаться ею на современных компьютерах. 🏆
@@ -314,7 +384,9 @@ If you happen to come across any archive on the web, you may need the following 
 | Файл                                                    | SHA‑256                                                         |
 |---------------------------------------------------------|----------------------------------------------------------------------|
 | Cossacks Back to War v1.52 (2025).zip                   | cac2dbca201890a9d07628eea6d908aca2786d7ad16af48793278f68a870371f |
+| Cossacks Back to War v1.52 LE (2025).zip                   | 01feb2b9f6085876ba3627c5cef89b354b473ea8a661030d956fd5eb8b8c7ca7 |
 | Cossacks Back to War v1.52 Classic Edition.zip                   | 865495e3497f933195fc752398716193924810f26f34b1ab8b1f18ec39490303 |
-| cossacks-1.52-source.zip                    | 195556674cf304dba49b868be8bc2169abf79c4c5df314363db53a3dd81ca6b9 |
-
+| Cossacks Back to War v1.52 LE Classic Edition.zip                  | 6ca00be8330c261c6a485f9937e6a83c2a33d25f03a98dc104a54fb454753993 |
+| cossacks-revamp-2025-1.52-source.zip                  | 195556674cf304dba49b868be8bc2169abf79c4c5df314363db53a3dd81ca6b9 |
+| cossacks-revamp-2025-1.52-LE-source.zip                 | 42e675834f37e6a18c1338c9e89d513906c5ba4d4d5ca23c55da151cd1b24687 |
 
