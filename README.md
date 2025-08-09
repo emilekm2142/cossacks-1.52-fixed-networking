@@ -46,10 +46,6 @@ Improved Graphics and Interface Updated textures and UI make the game easier on 
  **Includes maps for both multiplayer and single-player modes.**
 
 
-# Mod Reloaded Launch Instructions
-
-To launch mod reloaded, use the batch file Cossacks.Reloaded.bat located next to dmcr.exe. When using Wine on Linux or macOS, launch with the command: dmcr.exe /reloaded. 🔄
-
 
 #  🧠 Multithreading Support
 
@@ -98,6 +94,8 @@ Testing on ARM versions of Windows and macOS: The game has been tested on ARM ve
 🔹 Updated Version with Mods
 
 You can download the updated version of the game via this [link](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20%282025%29.zip). 🌐
+
+To launch mod reloaded, use the batch file Cossacks.Reloaded.bat located next to dmcr.exe.
 
 🔹 Classic Version without Mods, but with Bug Fixes
 
@@ -270,11 +268,6 @@ If you happen to come across any archive on the web, you may need the following 
 **В комплекте идут карты для сетевой и одиночной игры**
 
 
-# Запуск модификации mod reloaded:
-
-Для запуска mod reloaded используйте бат-файл Cossacks.Reloaded.bat, который находится рядом с файлом dmcr.exe. При запуске через Wine на Linux или macOS используйте команду dmcr.exe /reloaded. 🔄
-
-
 # Поддержка многоядерности:
 
 Ранее игра использовала только одно ядро, что приводило к сильным тормозам при большом количестве юнитов. Теперь, с поддержкой многоядерности, игра использует многопоточную обработку, что значительно улучшает производительность. Протестировано в мультиплеере с 40 000 юнитов на карте — лагов и вылетов не замечено. В теории можно использовать ещё больше юнитов, но это не проверялось.
@@ -328,6 +321,8 @@ If you happen to come across any archive on the web, you may need the following 
 🔹 Обновлённая версия игры с модами
 
 Вы можете скачать обновлённую версию игры по [ссылке](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20%282025%29.zip) . 🌐
+
+Для запуска mod reloaded используйте бат-файл Cossacks.Reloaded.bat, который находится рядом с файлом dmcr.exe.
 
 🔹 Классическая версия без модов, но с исправлениями ошибок
 
