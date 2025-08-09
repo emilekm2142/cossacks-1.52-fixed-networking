@@ -93,50 +93,84 @@ Mod installation: You can add your own mods by simply uploading the override.gsc
 
 Testing on ARM versions of Windows and macOS: The game has been tested on ARM versions of Windows and macOS running on Apple Silicon processors. In both cases, the game runs smoothly and without crashes. 🍏💻
 
-
 # 📥 Where to Download?
 
-You can download the updated version of the game [here](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20%282025%29.zip) 🌐
+🔹 Updated Version with Mods
 
-# 🗂️ What about the classic version without mods, but with the bug fixes from version 1.42?
-This is Cossacks: Back to War 1.52 Classic Edition. It’s available as a separate archive, which you can download [here](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20Classic%20Edition.zip) . This version doesn’t include any built-in mods, but all new cheat codes still work, as they are written into the game engine rather than the game resources.
+You can download the updated version of the game via this [link](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20%282025%29.zip). 🌐
+
+🔹 Classic Version without Mods, but with Bug Fixes
+
+This is Cossacks: Back to War 1.52 Classic Edition
+
+It is available in a separate archive: [Download Classic Version](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20Classic%20Edition.zip)
+
+This version does not include built-in add-ons, but all new cheat codes work as they are embedded in the game engine, not in the game resources.
+
+# 🍷 Installation on macOS via CrossOver
+
+For macOS users, ready-made bottles (.cxarchive) are available, allowing you to run the game without manual setup:
+
+🔸 Download the bottle for the updated version
+
+🔸 Download the bottle for Classic Edition
+
+Installation:
+
+  Install [CrossOver](https://www.codeweavers.com/crossover?srsltid=AfmBOopGZqKxWKdUpURIthTbxWTpk9u4zl8BwW4IwxWZXI2DJOM8A25b) for macOS if it is not already installed.
+
+  Download the desired bottle.
+
+  Double-click the file — CrossOver will automatically install the game.
+
+  It is recommended to enable Retina mode for better image quality:
+
+      Open CrossOver.
+
+      Go to the bottle settings.
+
+      Enable the “Use Retina mode (high DPI)” option.
 
 # 🖥️ Windows XP Support — For True Retro Enthusiasts
 
-While our main focus remains on modern operating systems, we haven’t forgotten about Windows XP users — the legendary OS that became a symbol of an entire era.
+Despite the primary focus on modern operating systems, we haven’t forgotten about Windows XP users — the legendary OS that became a symbol of an entire era.
 
+Starting August 9, 2025, Cossacks: Back to War 1.52 Legacy Edition, specifically adapted for Windows XP SP3, is available.
 
-Starting August 9, 2025, Cossacks: Back to War 1.52 Legacy Edition is available, specially adapted for Windows XP SP3.
+🧰 System Requirements:
 
+    Processor: Minimum Intel Core 2 Duo
 
-System Requirements:
+    RAM: From 256 MB (512 MB or higher recommended)
 
-Processor: Minimum Intel Core 2 Duo
+🌟 Features:
 
-RAM: From 256 MB (512 MB or more recommended)
+    Full compatibility with Windows XP SP3
 
-Features:
+    All features and improvements of version 1.52
 
-Full compatibility with Windows XP SP3
+    Full multiplayer compatibility with players on Windows 11, Linux, and macOS
 
-All features and improvements from version 1.52
+📥 Download Cossacks: Back to War 1.52 Legacy Edition: [👉 Download Archive](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20LE%20%282025%29.zip).
 
-Fully functional multiplayer, compatible with players on Windows 11, Linux, and macOS
-<hr>
-📥 You can download Cossacks: Back to War 1.52 Legacy Edition
+📥 Classic Version (LE Classic Edition) without mods: [👉 Download Archive](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20LE%20Classic%20Edition.zip).
 
-[here](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20LE%20%282025%29.zip).
+    💡 Important: This version is also suitable if you are using outdated Linux versions, for example, without support for the latest versions of Wine or Proton. Thanks to enhanced compatibility and low system requirements, Legacy Edition can be an excellent choice for older distributions.
 
-If you prefer the classic version without mods but with integrated enhancements, choose Cossacks: Back to War v1.52 LE Classic Edition via
-[this link](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20LE%20Classic%20Edition.zip).
+🖥 How to Run the Game on Linux?
 
-<hr>
+To run the game on Linux, use Wine, Proton, or Lutris.
+Simply copy the game folder to the desired directory and run:
 
-# ⚠️ Important: Support for Windows 9x (95/98/ME) and Windows 2000 will not be implemented for the following reasons:
+    dmcr.exe — for the original version
 
-These systems lack support for multi-core processors;
-Version 1.52 requires at least 256 MB of RAM and a dual-core CPU (quad-core or higher recommended);
-Even with deep optimization, the game remains too resource-intensive for platforms without SMP (Symmetric Multiprocessing) — multithreading is a core part of the new engine version.
+    dmcr.exe /reloaded — to launch with the Reloaded mod
+
+⚠️ Important: Support for Windows 9x/ME and Windows 2000 will not be implemented for the following reasons:
+
+    These systems lack support for multi-core processors
+
+    Version 1.52 requires a minimum of 256 MB of RAM and a dual-core processor (4 cores or higher recommended)
 
 <hr>
 
@@ -144,14 +178,6 @@ Even with deep optimization, the game remains too resource-intensive for platfor
 [Internet Archive](https://archive.org/details/cossacks-back-to-war-v-1.52-2025_202506)
 
 
-#  🖥 How to Run the Game on Linux or macOS?
-
-To run the game on Linux, use Wine or Proton . To run it on macOS, use [Whisky](https://getwhisky.app/) or [CrossOver](https://www.codeweavers.com/). Simply copy the game folder into the created bottle and launch the dmcr.exe file, or dmcr.exe /reloaded if you want to start the game with the Reloaded mod.
-
-For a comfortable gaming experience on the built-in MacBook display, make sure to enable Retina mode in the bottle settings.
-
-
-Enjoy the game! 🎮
 
 #  🙏 Acknowledgments
 
@@ -294,13 +320,49 @@ If you happen to come across any archive on the web, you may need the following 
 Тестирование на ARM-версии Windows и macOS: Игра была протестирована на ARM-версии Windows и macOS на процессорах Apple Silicon. В обоих случаях игра работает стабильно и без сбоев. 🍏💻
 
 
-#  📥 Где скачать?
+
+
+
+# 📥 Где скачать?
+
+🔹 Обновлённая версия игры с модами
 
 Вы можете скачать обновлённую версию игры по [ссылке](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20%282025%29.zip) . 🌐
 
-# 🗂️ А как же классическая версия без модов, но с исправлениями ошибок версии 1.42?
+🔹 Классическая версия без модов, но с исправлениями ошибок
 
-Это Cossacks: Back to War 1.52 Classic Edition. Она доступна в отдельном архиве, который вы можете загрузить [здесь](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20Classic%20Edition.zip) . В этой версии нет встроенных дополнений, но работают все новые чит-коды, так как они прописаны в движке, а не в ресурсах игры.
+
+Это Cossacks: Back to War 1.52 Classic Edition
+
+Она доступна в отдельном архиве: [ Скачать классическую версию](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20Classic%20Edition.zip) 
+
+В этой версии нет встроенных дополнений, но работают все новые чит-коды, так как они прописаны в движке, а не в ресурсах игры.
+
+# 🍷 Установка на macOS через CrossOver
+
+Для пользователей macOS доступны готовые бутылки (.cxarchive), которые позволяют запустить игру без ручной настройки:
+
+🔸 Скачать бутылку для обновлённой версии
+
+🔸 Скачать бутылку для Classic Edition
+
+Установка:
+
+  Установите [CrossOver](https://www.codeweavers.com/crossover?srsltid=AfmBOopGZqKxWKdUpURIthTbxWTpk9u4zl8BwW4IwxWZXI2DJOM8A25b) для macOS, если он ещё не установлен.
+
+    Скачайте нужную бутылку.
+
+    Дважды кликните по файлу — CrossOver автоматически установит игру.
+
+    Рекомендуется включить Retina-режим для лучшего качества изображения:
+
+        Откройте CrossOver.
+
+        Перейдите в настройки бутылки.
+
+        Активируйте опцию “Use Retina mode (high DPI)”.
+
+
 
 # 🖥️ Поддержка Windows XP — для настоящих ценителей ретро
 
@@ -308,35 +370,40 @@ If you happen to come across any archive on the web, you may need the following 
 
 С 9 августа 2025 года доступна Cossacks: Back to War 1.52 Legacy Edition, специально адаптированная для Windows XP SP3.
 
-Системные требования:
+🧰 Системные требования:
 
-Процессор: минимум Intel Core 2 Duo
+    Процессор: минимум Intel Core 2 Duo
 
-Оперативная память: от 256 МБ (рекомендуется от 512 МБ и выше)
+    ОЗУ: от 256 МБ (рекомендуется 512 МБ и выше)
 
-Особенности:
+🌟 Особенности:
 
-Полная совместимость с Windows XP SP3
+    Полная совместимость с Windows XP SP3
 
-Все функции и улучшения версии 1.52
+    Все функции и улучшения версии 1.52
 
-Полноценный мультиплеер, совместимый с игроками на Windows 11, Linux и macOS
+    Полноценный мультиплеер, совместимый с игроками на Windows 11, Linux и macOS
 
-<hr>
+📥 Скачать Cossacks: Back to War 1.52 Legacy Edition: [👉 Загрузить архив](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20LE%20%282025%29.zip).
 
-📥 Скачать Cossacks: Back to War 1.52 Legacy Edition можно
-[здесь](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20LE%20%282025%29.zip).
+📥 Классическая версия (LE Classic Edition) без модов: [👉 Загрузить архив](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20LE%20Classic%20Edition.zip).
 
+    💡 Важно: Эта версия также подойдёт, если вы используете устаревшие версии Linux, например, без поддержки последних версий Wine или Proton. Благодаря повышенной совместимости и низким системным требованиям, Legacy Edition может быть отличным выбором для старых дистрибутивов.
 
-Если вам нужна классическая версия без модов, но с интегрированными улучшениями — выберите Cossacks: Back to War v1.52 LE Classic Edition по
-[этой ссылке](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20LE%20Classic%20Edition.zip).
-<hr>
+🖥 Как запустить игру на Linux?
 
-# ⚠️ Важно: Поддержка Windows 9x (95/98/ME) и Windows 2000 реализовываться не будет по следующим причинам:
+Для запуска игры на Linux используйте Wine,Proton или Lutris.
+Просто скопируйте папку с игрой в нужную директорию и запустите:
 
-В этих системах отсутствует поддержка многоядерных процессоров;
-Версия 1.52 требует минимум 256 МБ оперативной памяти и двухъядерный процессор (рекомендуется 4 ядра и более);
-Даже при глубокой оптимизации игра остаётся слишком ресурсоёмкой для платформ без SMP (Symmetric Multiprocessing) — многопоточность лежит в основе новой версии движка.
+    dmcr.exe — для оригинальной версии
+
+    dmcr.exe /reloaded — для запуска с модом Reloaded
+
+⚠️ Важно: поддержка Windows 9x/ME и Windows 2000 реализовываться не будет по следующим причинам:
+
+    В этих системах отсутствует поддержка многоядерных процессоров
+
+    Версия 1.52 требует минимум 256 МБ оперативной памяти и двухъядерный процессор (рекомендуется 4 ядра и выше)
 
 <hr>
 
@@ -346,14 +413,6 @@ If you happen to come across any archive on the web, you may need the following 
 
 [Internet Archive](https://archive.org/details/cossacks-back-to-war-v-1.52-2025_202506)
 
-# 🖥 Как запустить игру на Linux или MacOS?
-
-Для запуска игры на Linux используйте Wine или Proton. Для запуска на MacOS — [Whisky](https://getwhisky.app/) или [CrossOver](https://www.codeweavers.com/). Просто скопируйте папку с игрой в созданную бутылку и запустите файл dmcr.exe или dmcr.exe /reloaded, если хотите загрузить игру с модом Reloaded.
-
-Для комфортной игры на встроенном экране MacBook обязательно включите режим Retina в настройках бутылки.
-
-
-🎮 Приятной игры!
 
 # 🙏 Благодарности
 
