@@ -109,7 +109,7 @@ This version does not include built-in add-ons, but all new cheat codes work as 
 
 For macOS users, ready-made bottles (.cxarchive) are available, allowing you to run the game without manual setup:
 
-📥 🔸 [Download the bottle for the updated version](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/macOS_Cossacks_Back_to_War_1.52.cxarchive)
+📥 🔸 [Download the bottle for the updated version](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/macOS_Cossacks_Back_to_War_1.52.cxarchive) [please wait, update now]
 
 
 📥 🔸 [Download the bottle for Classic Edition](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/macOS_Cossacks_Back_to_War_1.52_CE.cxarchive)
@@ -342,7 +342,7 @@ If you happen to come across any archive on the web, you may need the following 
 
 Для пользователей macOS доступны готовые бутылки (.cxarchive), которые позволяют запустить игру без ручной настройки:
 
-📥 🔸 [Скачать бутылку для обновлённой версии](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/macOS_RU_Cossacks_Back_to_War_1.52.cxarchive)
+📥 🔸 [Скачать бутылку для обновлённой версии](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/macOS_RU_Cossacks_Back_to_War_1.52.cxarchive) [please wait, update now]
 
 
 📥 🔸 [Скачать бутылку для Classic Edition](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/macOS_RU_Cossacks_Back_to_War_1.52_CE.cxarchive)
