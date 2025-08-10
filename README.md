@@ -167,7 +167,7 @@ dmcr.exe /reloaded — to run with the Reloaded mod
 
 If you encounter crackling or artifacts in the sound when launching the game, it may be related to the choice of audio backend in Wine. To fix these issues, it’s recommended to run the game with the audio driver specified manually:
 
-SDL_AUDIODRIVER=directsound wine dmcr.exe
+    SDL_AUDIODRIVER=directsound wine dmcr.exe
 
 To avoid entering this variable every time, you can add it to the configuration of your wineprefix. This will automatically apply the setting each time the game is launched.
 
@@ -409,7 +409,7 @@ If you happen to come across any archive on the web, you may need the following 
 
 Если при запуске игры вы сталкиваетесь с хрустами или артефактами в звуке, это может быть связано с выбором звукового бэкенда в Wine. Чтобы устранить эти проблемы, рекомендуется запускать игру с указанием аудиодрайвера вручную:
 
-SDL_AUDIODRIVER=directsound wine dmcr.exe
+    SDL_AUDIODRIVER=directsound wine dmcr.exe
 
 Чтобы не вводить эту переменную каждый раз, вы можете прописать её в конфигурации вашей бутылки (wineprefix). Это позволит автоматически применять настройку при каждом запуске игры.
 
