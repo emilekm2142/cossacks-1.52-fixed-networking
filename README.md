@@ -217,10 +217,10 @@ If you happen to come across any archive on the web, you may need the following 
 | Cossacks Back to War v1.52 LE Classic Edition.zip                  | 6ca00be8330c261c6a485f9937e6a83c2a33d25f03a98dc104a54fb454753993 |
 | cossacks-revamp-2025-1.52-source.zip                  | 195556674cf304dba49b868be8bc2169abf79c4c5df314363db53a3dd81ca6b9 |
 | cossacks-revamp-2025-1.52-LE-source.zip                 | 42e675834f37e6a18c1338c9e89d513906c5ba4d4d5ca23c55da151cd1b24687 |
-| macOS_Cossacks_Back_to_War_1.52.cxarchive                 | 007a18ce124afd76faaac684ae13c015528d7d2ecb7b6077fad9e54ebdcb9cfb |
-| macOS_Cossacks_Back_to_War_1.52_CE.cxarchive                | c37598ce6e9715dbe55d249cb52e8fd00c6d15e0fa512705dd34c84f3b6fcbdb |
-| macOS_RU_Cossacks_Back_to_War_1.52.cxarchive                 | 2c5e4986b7d7ec11ab87dcce95935280b29d388ce8c8b223112d4ed54c4ccf58 |
-| macOS_RU_Cossacks_Back_to_War_1.52_CE.cxarchive               | 316d7b7a9f41909c4a8814fb16dd6de347fb8e42897baaca37a479a556318a00 |
+| macOS_Cossacks_Back_to_War_1.52.cxarchive                 | 9622666f9dd939badd3fe632d3d7c0f9e21dd1486bbc4c056052011d365c7386 |
+| macOS_Cossacks_Back_to_War_1.52_CE.cxarchive                | 94681f1e16be29dd3d3695145a2e6c92d4a8ed229de938060e01b23a7840bd7c |
+| macOS_RU_Cossacks_Back_to_War_1.52.cxarchive                 | 08d7376b59c81bea9e37e3d46ba88182b40ca6e05fb713dd6a72623dddd33050 |
+| macOS_RU_Cossacks_Back_to_War_1.52_CE.cxarchive               | 3fd4d151e2cd201097589eebb88ae4398db0e2f433ca3b099140434faf73aeb1 |
 
 
 <hr>
@@ -462,7 +462,7 @@ If you happen to come across any archive on the web, you may need the following 
 | Cossacks Back to War v1.52 LE Classic Edition.zip                  | 6ca00be8330c261c6a485f9937e6a83c2a33d25f03a98dc104a54fb454753993 |
 | cossacks-revamp-2025-1.52-source.zip                  | 195556674cf304dba49b868be8bc2169abf79c4c5df314363db53a3dd81ca6b9 |
 | cossacks-revamp-2025-1.52-LE-source.zip                 | 42e675834f37e6a18c1338c9e89d513906c5ba4d4d5ca23c55da151cd1b24687 |
-| macOS_Cossacks_Back_to_War_1.52.cxarchive                 | 007a18ce124afd76faaac684ae13c015528d7d2ecb7b6077fad9e54ebdcb9cfb |
-| macOS_Cossacks_Back_to_War_1.52_CE.cxarchive                | c37598ce6e9715dbe55d249cb52e8fd00c6d15e0fa512705dd34c84f3b6fcbdb |
-| macOS_RU_Cossacks_Back_to_War_1.52.cxarchive                 | 2c5e4986b7d7ec11ab87dcce95935280b29d388ce8c8b223112d4ed54c4ccf58 |
-| macOS_RU_Cossacks_Back_to_War_1.52_CE.cxarchive               | 316d7b7a9f41909c4a8814fb16dd6de347fb8e42897baaca37a479a556318a00 |
+| macOS_Cossacks_Back_to_War_1.52.cxarchive                 | 9622666f9dd939badd3fe632d3d7c0f9e21dd1486bbc4c056052011d365c7386 |
+| macOS_Cossacks_Back_to_War_1.52_CE.cxarchive                | 94681f1e16be29dd3d3695145a2e6c92d4a8ed229de938060e01b23a7840bd7c |
+| macOS_RU_Cossacks_Back_to_War_1.52.cxarchive                 | 08d7376b59c81bea9e37e3d46ba88182b40ca6e05fb713dd6a72623dddd33050 |
+| macOS_RU_Cossacks_Back_to_War_1.52_CE.cxarchive               | 3fd4d151e2cd201097589eebb88ae4398db0e2f433ca3b099140434faf73aeb1 |
