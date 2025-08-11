@@ -1317,7 +1317,7 @@ int Brigade::AddInRadius(int x, int y, int r, BrigMemb* pBM)
 	}
 
 	// Многопоточная обработка для > 5000 объектов
-	const int num_threads = std::min<int>(std::thread::hardware_concurrency(), r);
+	const int num_threads = min(std::min<int>(std::thread::hardware_concurrency(), r), 16);
 	std::vector<ThreadResult> results(num_threads, ThreadResult(M));
 	std::vector<std::thread> threads;
 

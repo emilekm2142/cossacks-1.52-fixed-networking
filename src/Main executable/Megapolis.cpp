@@ -4030,9 +4030,7 @@ void AI_Army::CreateMinimalArmyFromBrigade(Brigade* BR, int Type)
 	std::mutex exBrigsMutex;
 
 	// Определяем количество потоков
-	const int numThreads = (N / 1000 + 1) < static_cast<int>(std::thread::hardware_concurrency())
-		? (N / 1000 + 1)
-		: static_cast<int>(std::thread::hardware_concurrency());
+	const int numThreads = min((N / 1000 + 1), min(static_cast<int>(std::thread::hardware_concurrency()), 16));
 	std::vector<std::thread> threads;
 	threads.reserve(numThreads);
 
@@ -4173,7 +4171,7 @@ void AI_Army::AddBrigade(Brigade* BR)
 	std::vector<word> BriInd(MaxBT, 0xFFFF);
 
 	// Определяем количество потоков
-	const int numThreads = (N > 5000) ? ((N / 1000 + 1) < static_cast<int>(std::thread::hardware_concurrency()) ? (N / 1000 + 1) : static_cast<int>(std::thread::hardware_concurrency())) : 1;
+	const int numThreads = (N > 5000) ? min((N / 1000 + 1), min(static_cast<int>(std::thread::hardware_concurrency()), 16)) : 1;
 	std::vector<std::thread> threads;
 	threads.reserve(numThreads);
 
@@ -5869,7 +5867,7 @@ void A_BitvaLink(AI_Army* ARM)
 	if (totalUnits > 5000)
 	{
 		// Распараллеливание
-		const int numThreads = std::thread::hardware_concurrency();
+		const int numThreads = min(std::thread::hardware_concurrency(), 16);
 		std::vector<std::thread> threads;
 		int brigadesPerThread = ARM->NExBrigs / numThreads;
 		if (brigadesPerThread == 0) brigadesPerThread = 1;
@@ -6471,7 +6469,7 @@ void A_DiversiaLink(AI_Army* ARM)
 	if (total > 5000)
 	{
 		std::atomic<int> aliveCount(0);
-		unsigned threadsNum = std::thread::hardware_concurrency();
+		unsigned threadsNum = min(std::thread::hardware_concurrency(), 16u);
 		if (threadsNum == 0) threadsNum = 4;
 		int chunk = (ARM->NExBrigs + threadsNum - 1) / threadsNum;
 		std::vector<std::thread> thr;

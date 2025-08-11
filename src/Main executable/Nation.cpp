@@ -230,7 +230,7 @@ void PrepareProcessing()
 	}
 	else {
 		// Определяем число потоков
-		unsigned int numThreads = std::thread::hardware_concurrency();
+		unsigned int numThreads = min(std::thread::hardware_concurrency(), 16);
 		if (numThreads == 0) numThreads = 1;
 		std::vector<std::thread> threads;
 		threads.reserve(numThreads);
