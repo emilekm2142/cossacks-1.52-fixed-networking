@@ -92,20 +92,104 @@ CDirSound::~CDirSound() {
 }
 
 void CDirSound::ReleaseAll() {
-    for (UINT x = 1; x <= m_currentBufferNum; ++x) {
-        if (m_bufferPointers[x]) {
-            Mix_FreeChunk(m_bufferPointers[x]);
+    // Останавливаем всё воспроизведение
+    Mix_HaltChannel(-1);
+    Mix_HaltMusic();
+
+    // Небольшая пауза, даём внутренним потокам миксера завершить работу
+    SDL_Delay(30);
+
+    // Защитный предел — реальный размер массива m_bufferPointers
+    size_t maxBuffers = sizeof(m_bufferPointers) / sizeof(m_bufferPointers[0]);
+
+    // Временные массивы для уникальных чанков (максимум maxBuffers уникальных)
+    Mix_Chunk** uniq = new Mix_Chunk * [maxBuffers];
+    int* uniqCount = new int[maxBuffers];
+    for (size_t i = 0; i < maxBuffers; ++i) { uniq[i] = NULL; uniqCount[i] = 0; }
+
+    // Собираем уникальные чанки и считаем вхождения
+    size_t uniqN = 0;
+    for (UINT x = 1; x <= m_currentBufferNum && x < maxBuffers; ++x) {
+        Mix_Chunk* chunk = m_bufferPointers[x];
+        if (chunk == NULL) continue;
+
+        // грубая проверка на явно неверные указатели
+        size_t addr = (size_t)chunk;
+        if (addr <= 0x10000) {
+            // считаем как невалидный — просто зануляем слот и продолжим
             m_bufferPointers[x] = NULL;
+            m_channels[x] = -1;
+            continue;
         }
-        m_channels[x] = -1;
+
+        // ищем в уже добавленных
+        size_t found = SIZE_MAX;
+        for (size_t j = 0; j < uniqN; ++j) {
+            if (uniq[j] == chunk) { found = j; break; }
+        }
+        if (found != SIZE_MAX) {
+            uniqCount[found] += 1;
+        }
+        else {
+            // добавляем новый уникальный
+            uniq[uniqN] = chunk;
+            uniqCount[uniqN] = 1;
+            uniqN++;
+        }
     }
+
+    // Для каждого уникального чанка: сперва освободим внутренний буфер abuf (если есть),
+    // затем освободим сам chunk через Mix_FreeChunk. Это предотвращает утечки и double-free.
+    for (size_t j = 0; j < uniqN; ++j) {
+        Mix_Chunk* ch = uniq[j];
+        if (!ch) continue;
+
+        // Если есть внутренний abuf — освободим его корректно через SDL_FreeWAV
+        // (он предназначен для освобождения wav-буферов, используемых SDL/SDL_mixer).
+        // Проверяем существование поля abuf и освобождаем, затем зануляем поля.
+        if (ch->abuf != NULL) {
+            // Освобождаем WAV-буфер через SDL API (внутренний аллокатор SDL)
+            SDL_FreeWAV(ch->abuf);
+            ch->abuf = NULL;
+            ch->alen = 0;
+            ch->allocated = 0; // чтобы Mix_FreeChunk не пытался снова free(abuf)
+        }
+
+        // Если аудио всё ещё инициализировано — освобождаем сам chunk
+        if (SDL_WasInit(SDL_INIT_AUDIO) != 0) {
+            Mix_FreeChunk(ch);
+        }
+        else {
+            // Если аудио уже не инициализировано — пропускаем free, ОС очистит память при закрытии процесса.
+        }
+    }
+
+    // Очистим слоты и каналы
+    for (UINT x = 1; x <= m_currentBufferNum && x < maxBuffers; ++x) {
+        m_bufferPointers[x] = NULL;
+        m_bufferSizes[x] = 0;
+        m_channels[x] = -1;
+        Volume[x] = 0;
+        BufIsRun[x] = 0;
+        SrcX[x] = 0;
+        SrcY[x] = 0;
+    }
+    m_currentBufferNum = 0;
+
+    // Закрываем аудио и SDL
     if (m_pDirectSoundObj) {
         Mix_CloseAudio();
         SDL_Quit();
         m_pDirectSoundObj = NULL;
     }
+
+    // освобождаем временные массивы
+    delete[] uniq;
+    delete[] uniqCount;
+
     memset(BufIsRun, 0, sizeof(BufIsRun));
 }
+
 
 UINT CDirSound::CreateSoundBuffer(CWave* pWave) {
     if (m_currentBufferNum == MAXSND)
