@@ -6190,8 +6190,10 @@ void SearchArmyLink(OneObject* OBJ)
 		int MyTop = GetTopology(OBJ->RealX >> 4, OBJ->RealY >> 4);
 		if (MyTop >= 0xFFFE)
 			return;
+
+		int MMTop = MyTop * NAreas;
 		City* CT = CITY + OBJ->NNUM;
-		int MinR = 0x7FFFFFFF;
+		int MinR = 0xFFFE;
 
 		for (int i = 0; i < MaxArm; i++)
 		{
@@ -6200,21 +6202,18 @@ void SearchArmyLink(OneObject* OBJ)
 				continue;
 
 			int freeUnits = ARM->NFreeUnits / 36;
-			// 2.1) Границы по числу уже вштых
 			if (OFC)
 			{
-				if (!(freeUnits > ARM->NCom && ARM->NCom < MaxCom))
+				if (!(freeUnits > ARM->NCom && ARM->NCom < 8))
 					continue;
 			}
 			else
 			{
-				if (!(freeUnits > ARM->NBar && ARM->NBar < MaxBar))
+				if (!(freeUnits > ARM->NBar && ARM->NBar < 8))
 					continue;
 			}
 
-			int dr = (ARM->TopPos == MyTop)
-				? 0
-				: LinksDist[ARM->TopPos + MyTop * NAreas];
+			int dr = (ARM->TopPos == MyTop) ? 0 : LinksDist[ARM->TopPos + MMTop];
 			if (dr < MinR)
 			{
 				MinR = dr;
@@ -6227,14 +6226,12 @@ void SearchArmyLink(OneObject* OBJ)
 			AI_Army* ARM = CT->ARMS + Aid;
 			if (OFC)
 			{
-				// 2.2) Добавляем в список командиров
 				ARM->ComID[ARM->NCom] = OBJ->Index;
 				ARM->ComSN[ARM->NCom] = OBJ->Serial;
 				ARM->NCom++;
 			}
 			else
 			{
-				// 2.3) Добавляем в список рядовых
 				ARM->BarID[ARM->NBar] = OBJ->Index;
 				ARM->BarSN[ARM->NBar] = OBJ->Serial;
 				ARM->NBar++;
@@ -6243,40 +6240,366 @@ void SearchArmyLink(OneObject* OBJ)
 		}
 		return;
 	}
-
-	// 3) Иначе — нужно удалить из текущей армии
-	AI_Army* ARM = CITY[OBJ->NNUM].ARMS + ArmID;
-	if (OFC)
-	{
-		// 3.1) Удаляем из списка командиров
-		for (int i = 0; i < ARM->NCom; i++)
-		{
-			if (ARM->ComID[i] == OBJ->Index && ARM->ComSN[i] == OBJ->Serial)
-			{
-				for (int j = i; j + 1 < ARM->NCom; j++)
-				{
-					ARM->ComID[j] = ARM->ComID[j + 1];
-					ARM->ComSN[j] = ARM->ComSN[j + 1];
-				}
-				ARM->NCom--;
-				break;
-			}
-		}
-	}
 	else
 	{
-		// 3.2) Удаляем из списка рядовых
-		for (int i = 0; i < ARM->NBar; i++)
+		// 3) Если в армии — проверяем, нужно ли выйти или двигаться к армии
+		AI_Army* ARM = CITY[OBJ->NNUM].ARMS + ArmID;
+
+		// 3.1) Проверяем, есть ли объект в списке
+		if (OFC)
 		{
-			if (ARM->BarID[i] == OBJ->Index && ARM->BarSN[i] == OBJ->Serial)
+			bool found = false;
+			for (int i = 0; i < ARM->NCom && !found; i++)
+				if (ARM->ComID[i] == OBJ->Index)
+					found = true;
+			if (!found)
 			{
-				for (int j = i; j + 1 < ARM->NBar; j++)
+				ord->info.BuildObj.ObjIndex = 0xFFFF;
+				return;
+			}
+		}
+		else
+		{
+			bool found = true;
+			for (int i = 0; i < ARM->NBar && !found; i++)
+				if (ARM->BarID[i] == OBJ->Index)
+					found = true;
+			if (!found)
+			{
+				ord->info.BuildObj.ObjIndex = 0xFFFF;
+				return;
+			}
+		}
+
+		// 3.2) Проверяем, можем ли остаться в армии
+		if ((OFC && ARM->NFreeUnits / 36 > ARM->NCom) || (!OFC && ARM->NFreeUnits / 36 > ARM->NBar))
+		{
+			word* CID = OFC ? ARM->ComID : ARM->BarID;
+			word* CSN = OFC ? ARM->ComSN : ARM->BarSN;
+			int CN = OFC ? ARM->NCom : ARM->NBar;
+
+			// Поиск самого дальнего юнита
+			int maxr = -1;
+			int comid = 0xFFFF;
+			int cps = 0;
+			int top0 = ARM->TopPos;
+			if (top0 >= 0xFFFE)
+				return;
+
+			for (int i = 0; i < CN; i++)
+			{
+				OneObject* OB = Group[CID[i]];
+				if (OB && OB->Serial == CSN[i] && !OB->Sdoxlo)
 				{
-					ARM->BarID[j] = ARM->BarID[j + 1];
-					ARM->BarSN[j] = ARM->BarSN[j + 1];
+					int top1 = GetTopology(OB->RealX >> 4, OB->RealY >> 4);
+					int dd = (top1 < 0xFFFE) ? (top1 == top0 ? 0 : LinksDist[top1 * NAreas + top0]) : 0xFFFF;
+					if (dd > maxr)
+					{
+						maxr = dd;
+						comid = OB->Index;
+						cps = i;
+					}
 				}
-				ARM->NBar--;
-				break;
+			}
+
+			if (comid == OBJ->Index)
+			{
+				CSN[cps]++;
+				CalculateFreeUnits(ARM);
+				ord->info.BuildObj.ObjIndex = 0xFFFF;
+				return;
+			}
+		}
+
+		// 3.3) Движение к армии
+		int top0 = ARM->TopPos;
+		if (top0 >= 0xFFFE)
+			return;
+
+		int top1 = GetTopology(OBJ->RealX >> 4, OBJ->RealY >> 4);
+		if (top1 >= 0xFFFE)
+			return;
+
+		if (top1 != top0)
+		{
+			top1 = MotionLinks[top0 + top1 * NAreas];
+			Area* AR = TopMap + top1;
+			if (!AR)
+			{
+				OBJ->DestX = 0;
+				OBJ->DestY = 0;
+				return;
+			}
+
+			int x1 = int(AR->x) << 6;
+			int y1 = int(AR->y) << 6;
+			int x0 = OBJ->RealX >> 4;
+			int y0 = OBJ->RealY >> 4;
+
+			OBJ->DestX = 0;
+			OBJ->DestY = 0;
+			OBJ->NewState = 0;
+			OBJ->GroundState = 0;
+
+			if (Norma(x0 - x1, y0 - y1) > 250)
+			{
+				OBJ->CreatePath(x1 >> 4, y1 >> 4);
+			}
+		}
+		else if (OFC)
+		{
+			// 3.4) Создание формации для командиров
+			word Bar = 0xFFFF;
+			int bpos = -1;
+			for (int i = 0; i < ARM->NBar; i++)
+			{
+				OneObject* BOB = Group[ARM->BarID[i]];
+				if (BOB && BOB->Serial == ARM->BarSN[i] && !BOB->Sdoxlo)
+				{
+					int top1 = GetTopology(BOB->RealX >> 4, BOB->RealY >> 4);
+					if (top1 == top0)
+					{
+						bpos = i;
+						Bar = BOB->Index;
+					}
+				}
+			}
+
+			if (Bar != 0xFFFF)
+			{
+				word FormUID = NATIONS[ARM->CT->NI].FormUnitID;
+				int BID = -1;
+				int MaxU = 0;
+				int N = ARM->NExBrigs;
+
+				for (int i = 0; i < N; i++)
+				{
+					Brigade* BR = ARM->ExBrigs[i].Brig;
+					if (!BR->WarType)
+					{
+						int Nu = BR->NMemb;
+						word* mem = BR->Memb;
+						word* msn = BR->MembSN;
+						int NFU = 0;
+						for (int j = 0; j < Nu; j++)
+						{
+							word mid = mem[j];
+							if (mid != 0xFFFF)
+							{
+								OneObject* OB = Group[mid];
+								if (OB && OB->Serial == msn[j] && !OB->Sdoxlo && OB->NIndex == FormUID)
+									NFU++;
+							}
+						}
+						if (NFU > MaxU)
+						{
+							MaxU = NFU;
+							BID = i;
+						}
+					}
+				}
+
+				if (BID != -1)
+				{
+					Brigade* FBR = ARM->ExBrigs[BID].Brig;
+					FBR->WarType = 0xFF;
+
+					int N = FBR->NMemb;
+					word* mem = FBR->Memb;
+					word* msn = FBR->MembSN;
+					word TrueMem[38];
+					int NTrue = 0;
+					City* CT = ARM->CT;
+					int id = CT->GetFreeBrigade();
+
+					if (id == -1)
+					{
+						FBR->WarType = 0;
+						return;
+					}
+
+					Brigade* OTB = CT->Brigs + id;
+					OTB->Enabled = 1;
+
+					for (int i = 0; i < N; i++)
+					{
+						word mid = mem[i];
+						if (mid != 0xFFFF)
+						{
+							OneObject* OB = Group[mid];
+							if (OB && OB->Serial == msn[i] && !OB->Sdoxlo)
+							{
+								if (OB->NIndex != FormUID || NTrue >= 36)
+								{
+									FBR->RemoveOne(i, OTB);
+									i--;
+									N--;
+								}
+								else
+								{
+									TrueMem[NTrue + 2] = OB->Index;
+									NTrue++;
+								}
+							}
+						}
+					}
+
+					if (OTB->NMemb)
+					{
+						ARM->AddBrigade(OTB);
+					}
+
+					if (NTrue < 36)
+					{
+						int Need = 36 - NTrue;
+						int NB = ARM->NExBrigs;
+						for (int i = 0; i < NB && Need; i++)
+						{
+							Brigade* MBR = ARM->ExBrigs[i].Brig;
+							if (!MBR->WarType)
+							{
+								word* mem = MBR->Memb;
+								word* msn = MBR->MembSN;
+								int nm = MBR->NMemb;
+								for (int j = 0; j < nm && Need; j++)
+								{
+									word mid = mem[j];
+									if (mid != 0xFFFF)
+									{
+										OneObject* OB = Group[mid];
+										if (OB && !OB->Sdoxlo && OB->Serial == msn[j] && OB->NIndex == FormUID)
+										{
+											MBR->RemoveOne(j, OTB);
+											Need--;
+											j--;
+										}
+									}
+								}
+							}
+						}
+						OTB->RemoveObjects(OTB->NMemb, FBR);
+					}
+
+					NTrue = 0;
+					for (int i = 0; i < FBR->NMemb; i++)
+					{
+						word mid = FBR->Memb[i];
+						if (mid != 0xFFFF)
+						{
+							OneObject* OB = Group[mid];
+							if (OB && !OB->Sdoxlo && OB->Serial == FBR->MembSN[i])
+							{
+								TrueMem[NTrue + 2] = OB->Index;
+								NTrue++;
+							}
+						}
+					}
+
+					TrueMem[0] = OBJ->Index;
+					TrueMem[1] = Bar;
+					NTrue += 2;
+
+					FBR->Memb = (word*)realloc(FBR->Memb, 38 * 2);
+					FBR->MembSN = (word*)realloc(FBR->MembSN, 38 * 2);
+					memset(FBR->Memb, 0xFF, 38 * 2);
+					memset(FBR->MembSN, 0xFF, 38 * 2);
+					FBR->NMemb = 38;
+					FBR->MaxMemb = 38;
+
+					int cidx = -1;
+					for (int p = 0; p < NEOrders && cidx == -1; p++)
+					{
+						if (!strcmp(ElementaryOrders[p].ID, "#SQUARE36"))
+							cidx = p;
+					}
+
+					if (cidx == -1)
+					{
+						MessageBox(NULL, "Could not find formation: #SQUARE36", "ERROR!", 0);
+						return;
+					}
+
+					OrderDescription* ODS = ElementaryOrders + cidx;
+					int AddShield = ODS->AddShield2;
+					int AddDamage = ODS->AddDamage2;
+					FBR->AddDamage = AddDamage;
+					FBR->AddShield = AddShield;
+
+					int ncr = 0;
+					int xs = 0;
+					int ys = 0;
+					for (int i = 0; i < NTrue; i++)
+					{
+						OneObject* OB = Group[TrueMem[i]];
+						FBR->Memb[i] = TrueMem[i];
+						FBR->MembSN[i] = OB->Serial;
+						OB->BrigadeID = FBR->ID;
+						OB->BrIndex = i;
+						OB->AddShield = AddShield;
+						OB->AddDamage = AddDamage;
+						OB->InArmy = 1;
+						OB->Zombi = 1;
+						OB->DoNotCall = 1;
+						OB->NoBuilder = 1;
+						if (i > 1)
+						{
+							xs += OB->RealX >> 4;
+							ys += OB->RealY >> 4;
+							ncr++;
+						}
+					}
+
+					xs /= ncr;
+					ys /= ncr;
+
+					OBJ->ClearOrders();
+					Group[Bar]->ClearOrders();
+
+					FBR->NMemb = 38;
+					FBR->ArmyID = ArmID;
+					FBR->PosCreated = false;
+					FBR->WarType = cidx + 1;
+					FBR->MembID = FormUID;
+					FBR->CreateOrderedPositions(xs << 4, ys << 4, 0);
+					FBR->KeepPositions(0, 128 + 16);
+
+					OTB->DeleteAll();
+					OTB->Enabled = false;
+
+					for (int i = 0; i < ARM->NCom; i++)
+					{
+						if (ARM->ComID[i] == OBJ->Index)
+							ARM->ComSN[i]++;
+					}
+					for (int i = 0; i < ARM->NBar; i++)
+					{
+						if (ARM->BarID[i] == Bar)
+							ARM->BarSN[i]++;
+					}
+
+					CalculateFreeUnits(ARM);
+					return;
+				}
+			}
+
+			// Если не удалось создать формацию, движемся к армии
+			Area* AR = TopMap + top1;
+			int x1 = int(AR->x) << 6;
+			int y1 = int(AR->y) << 6;
+			int x0 = OBJ->RealX >> 4;
+			int y0 = OBJ->RealY >> 4;
+
+			OBJ->NewState = 0;
+			OBJ->GroundState = 0;
+
+			if (Norma(x0 - x1, y0 - y1) > 250)
+			{
+				OBJ->CreatePath(x1 >> 4, y1 >> 4);
+			}
+			else
+			{
+				OBJ->DestX = -1;
+				OBJ->DestY = -1;
 			}
 		}
 	}
