@@ -1,4 +1,4 @@
-#include "ddini.h"
+﻿#include "ddini.h"
 #include "ResFile.h"
 #include "FastDraw.h"
 #include "mgraph.h"
@@ -36,6 +36,9 @@
 #include "GP_Draw.h"
 #include "DrawForm.h"
 #include "Fonts.h"
+#include "PlayerInfo.h"
+extern PlayerInfo PINFO[8];
+
 
 int MinLinkDist = 9;
 int StartHillHeight = 90;
@@ -1561,10 +1564,11 @@ void MakeDesert();
 
 void CreateMapByName(char* Name)
 {
-	//Set additional bitshift for large and huge maps
-	//1 = normal maps
-	//2 = large (2x) maps
-	//3 = huge (4x) maps
+//Set additional bitshift for large and huge maps
+//1 = normal maps
+//2 = large (2x) maps
+//3 = huge (4x) maps
+
 	ADDSH = Name[2] - '0' + 1;
 
 	SetupArrays();
@@ -1577,21 +1581,13 @@ void CreateMapByName(char* Name)
 
 	sscanf(Name, "%s%x%x%s%d", cc1, &x1, &x2, cc2, &ADD_PARAM);
 
+	// Подготовка стартовых юнитов
 	for (int i = 0; i < 8; i++)
 	{
 		char c = cc2[7 - i];
 		int id = 0;
-		if (c >= '0' && c <= '9')
-		{
-			id = c - '0';
-		}
-		else
-		{
-			if (c >= 'A' && c <= 'Z')
-			{
-				id = c - 'A' + 10;
-			}
-		}
+		if (c >= '0' && c <= '9') id = c - '0';
+		else if (c >= 'A' && c <= 'Z') id = c - 'A' + 10;
 
 		if (id)
 		{
@@ -1608,7 +1604,7 @@ void CreateMapByName(char* Name)
 			}
 			else
 			{
-				NatUnit[k] = 0;
+				NatUnit[i] = 0xFFFF;
 				sprintf(cc1, "Creating map: Unknown unit: %s", pname);
 				ErrM(cc1);
 			}
@@ -1619,6 +1615,7 @@ void CreateMapByName(char* Name)
 		}
 	}
 
+	// Загружаем описание ресурсов и стилей
 	RandomMapDesc RD;
 	RD.Load("Terrain\\res.dat");
 	int Style = x2 & 15;
@@ -1626,6 +1623,7 @@ void CreateMapByName(char* Name)
 	int Mount = (x2 >> 8) & 15;
 	int Resst = (x2 >> 12) & 15;
 	int Resmn = (x2 >> 16) & 15;
+
 	for (int i = 0; i < 8; i++)
 	{
 		for (int p = 0; p < 8; p++)
@@ -1639,9 +1637,35 @@ void CreateMapByName(char* Name)
 	RM_Restot = Resmn;
 	mrpos = x1 & 8191;
 	XXP = 0;
+
+	if (Style < 0 || Style >= RD.NSTY) {
+		Style = 0;
+	}
+
+	if (Play < 0 || Play >= RD.STY[Style].NPl) {
+		Play = 0;
+	}
+
+	// --- ищем ближайший вариант если нужно 8 игроков ---
+	int targetPlayers = 8;
+	int bestPlay = Play;
+	int bestDiff = 999;
+	for (int p = 0; p < RD.STY[Style].NPl; p++)
+	{
+		int npl = RD.STY[Style].Players[p].NPlayers;
+		int diff = abs(npl - targetPlayers);
+		if (diff < bestDiff)
+		{
+			bestDiff = diff;
+			bestPlay = p;
+		}
+	}
+	Play = bestPlay;
+
 	sprintf(cc1, "Terrain\\%s", RD.STY[Style].Players[Play].name);
 	CurTerrName[0] = 0;
 
+	// Подбор террейна по списку
 	GFILE* F = Gopen("Terrain\\terrlist.dat", "r");
 	if (F)
 	{
@@ -1661,7 +1685,8 @@ void CreateMapByName(char* Name)
 		Gclose(F);
 	}
 
-	CreateRandomTerrain(cc1, RD.STY[Style].Players[Play].NPlayers,
+	int players = RD.STY[Style].Players[Play].NPlayers;
+	CreateRandomTerrain(cc1, players,
 		Mount, RD.MINES[Resmn].Ng, RD.MINES[Resmn].Ni,
 		RD.MINES[Resmn].Nc, NatUnit, ADD_PARAM);
 
@@ -1670,11 +1695,132 @@ void CreateMapByName(char* Name)
 		MakeDesert();
 	}
 
+	// Добавляем бонусные ресурсы
 	for (int i = 0; i < 8; i++)
 	{
 		for (int p = 0; p < 8; p++)
 		{
 			RES[i][p] += ADDRES[p];
+		}
+	}
+
+	// --- добавляем 8-ю нацию, если она выбрана (NatUnit[7] задан) ---
+	if (players < 8 && NatUnit[7] != 0xFFFF)
+	{
+		int peasantIndex = NatUnit[7];  // Крестьянин 8-й нации
+		if (peasantIndex != 0xFFFF)
+		{
+			int baseX = 256, baseY = 256; // Координаты по умолчанию
+			int AllyID = -1;
+
+			// Проверяем группы из настроек меню для 8-й нации
+			int menuAlly = -1;
+			if (PINFO[7].GroupID != 0)
+			{
+				for (int i = 0; i < 7; i++)
+				{
+					if (PINFO[i].GroupID == PINFO[7].GroupID && PINFO[i].GroupID != 0)
+					{
+						menuAlly = i;
+						break;
+					}
+				}
+			}
+
+			// Если союзник по меню найден, используем его
+			if (menuAlly != -1)
+			{
+				AllyID = menuAlly;
+			}
+
+			// Шаг 1: ищем союзника по cc2 (если menuAlly == -1)
+			if (AllyID == -1)
+			{
+				for (int i = 0; i < 7; i++)
+				{
+					if (cc2[7 - i] != '0' && NatUnit[i] != 0xFFFF && i != MyNation)
+					{
+						AllyID = i;
+						break;
+					}
+				}
+			}
+
+			// Шаг 2: Ищем координаты спавна союзника
+			if (AllyID != -1)
+			{
+				// Проверяем зоны в GMAP.GTopMap
+				for (int i = 0; i < GMAP.NGAreas; i++)
+				{
+					GenArea* GA = GMAP.GTopMap + i;
+					if (GA->Nation == AllyID)
+					{
+						baseX = GA->x * 32; // Масштаб для пикселей
+						baseY = GA->y * 32;
+						break;
+					}
+				}
+
+				// Fallback: Если зоны нет, ищем первого крестьянина союзника
+				if (baseX == 256 && baseY == 256) // Зона не найдена
+				{
+					for (int i = 0; i < MAXOBJECT; i++)
+					{
+						OneObject* U = Group[i];
+						if (U && U->NNUM == AllyID) // Юнит принадлежит союзнику
+						{
+							baseX = U->RealX >> 4;
+							baseY = U->RealY >> 4;
+							break;
+						}
+					}
+				}
+			}
+
+			// Шаг 3: Если союзник не найден, спавним рядом с 7-й нацией
+			if (AllyID == -1 || (baseX == 256 && baseY == 256))
+			{
+				OneObject* refPeasant = nullptr;
+				for (int i = 0; i < MAXOBJECT; i++)
+				{
+					OneObject* U = Group[i];
+					if (U && U->NNUM == 6) // 7-я нация (индекс 6)
+					{
+						refPeasant = U;
+						break;
+					}
+				}
+				if (refPeasant)
+				{
+					baseX = refPeasant->RealX >> 4;
+					baseY = refPeasant->RealY >> 4;
+				}
+			}
+
+			// Шаг 4: Спавним юниты 8-й нации рядом с найденными координатами
+			for (int i = 0; i < 18; i++)
+			{
+				int mapX = baseX + ((mrand() % 128) - 64);
+				int mapY = baseY + ((mrand() % 128) - 64);
+
+				int unitID = NATIONS[7].CreateNewMonsterAt((mapX) << 4, (mapY) << 4, peasantIndex, 1);
+				if (unitID != -1)
+				{
+					OneObject* U = Group[unitID];
+					if (U)
+					{
+						U->NNUM = 7; // Принадлежит 8-й нации
+					}
+				}
+			}
+
+			// Шаг 5: объединяем NMask если союзник был из меню
+			if (menuAlly != -1)
+			{
+				byte commonMask = NATIONS[7].NMask | NATIONS[menuAlly].NMask;
+				NATIONS[7].NMask = commonMask;
+				NATIONS[menuAlly].NMask = commonMask;
+			}
 		}
 	}
 }
@@ -5777,7 +5923,7 @@ void ClearSMS()
 {
 	SAMSET.ClearAll();
 	memset(&SAMSET, 0, sizeof SAMSET);
-	// ����������� NatDeals
+	// Освобождаем NatDeals
 	if (NatDeals) {
 		delete[] NatDeals;
 		NatDeals = nullptr;

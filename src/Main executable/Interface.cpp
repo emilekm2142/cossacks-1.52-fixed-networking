@@ -2010,13 +2010,13 @@ bool ColorMouseOver(SimpleDialog* SD)
 	if (Lpressed)
 	{
 		CB->Nation++;
-		if (CB->Nation > 6)CB->Nation = 0;
+		if (CB->Nation > 7)CB->Nation = 0;
 		Lpressed = false;
 	};
 	if (Rpressed)
 	{
 		CB->Nation--;
-		if (CB->Nation < 0)CB->Nation = 6;
+		if (CB->Nation < 0)CB->Nation = 7;
 		Rpressed = false;
 	};
 	return true;
@@ -3225,9 +3225,9 @@ ffe2:
 		PIEnumeratePlayers(PINFO, false);
 	}
 
-	if (NPlayers > 7)
+	if (NPlayers > 8)
 	{
-		NPlayers = 7;
+		NPlayers = 8;
 	}
 
 	byte CUSED = 0;
@@ -3254,9 +3254,9 @@ ffe2:
 	{
 		PIEnumeratePlayers(PINFO, false);
 	}
-	if (NPlayers > 7)
+	if (NPlayers > 8)
 	{
-		NPlayers = 7;
+		NPlayers = 8;
 	}
 	for (int i = 0; i < NPlayers; i++)
 	{
@@ -3827,7 +3827,7 @@ ffe2:
 				CMask |= 1 << PINFO[q].ColorID;
 			}
 			int NN = 0;
-			for (int q = NPlayers; q < 7; q++)
+			for (int q = NPlayers; q < 8; q++)
 			{
 				if (PINFO[HostID].COMPINFO[q])
 				{
@@ -3912,7 +3912,7 @@ ffe2:
 							Nats[7 - PINFO[q].ColorID] = NTCHAR[MNATION[q]->CurLine + 1];
 						}
 
-						for (int q = NPlayers; q < 7; q++)
+						for (int q = NPlayers; q < 8; q++)
 						{
 							if (PINFO[HostID].COMPINFO[q])
 							{
@@ -3981,7 +3981,7 @@ ffe2:
 							}
 						}
 
-						for (int q = NPlayers; q < 7; q++)
+						for (int q = NPlayers; q < 8; q++)
 						{
 							if (PINFO[HostID].COMPINFO[q])
 							{
@@ -4108,7 +4108,7 @@ ffe2:
 				{
 					Nats[7 - PINFO[q].ColorID] = NTCHAR[MNATION[q]->CurLine + 1];
 				}
-				for (int q = NPlayers; q < 7; q++)
+				for (int q = NPlayers; q < 8; q++)
 				{
 					if (PINFO[HostID].COMPINFO[q])
 					{
@@ -4504,9 +4504,9 @@ ffe2:
 			}
 		}
 
-		if (NPlayers > 7)
+		if (NPlayers > 8)
 		{
-			NPlayers = 7;
+			NPlayers = 8;
 		}
 
 		//If true, ready flag will be zeroed
@@ -4676,7 +4676,7 @@ ffe2:
 		{
 			if (Host)
 			{
-				for (int i = 0; i < 7; i++)
+				for (int i = 0; i < 8; i++)
 				{
 					COMPS[i]->Visible = (i >= NPlayers);
 					COMPS[i]->Enabled = COMPS[i]->Visible;
@@ -4769,7 +4769,7 @@ ffe2:
 			}
 			else
 			{//Player is not the host
-				for (int i = 0; i < 7; i++)
+				for (int i = 0; i < 8; i++)
 				{
 					if (i >= NPlayers)
 					{
@@ -4886,7 +4886,7 @@ ffe2:
 		}
 		MSS1 = 0;
 
-		for (int i = 0; i < 7; i++)
+		for (int i = 0; i < 8; i++)
 		{
 			if (COMPS[i]->Visible && COMPS[i]->CurLine)
 			{
@@ -5119,7 +5119,7 @@ ffe2:
 		}
 
 		int NN[8] = { 0,0,0,0,0,0,0,0 };
-		for (int i = NPlayers; i < 7; i++)
+		for (int i = NPlayers; i < 8; i++)
 		{
 			if (PINFO[HostID].COMPINFO[i])
 			{
@@ -11704,7 +11704,7 @@ void PrepareGameMedia(byte myid, bool SaveNR)
 	assert(RunDataSize < 2048);
 	//----------
 	//Aliances
-	for (int i = NPlayers; i < 7; i++)
+	for (int i = NPlayers; i < 8; i++)
 	{
 		if (COMPSTART[i])
 		{
@@ -11739,7 +11739,7 @@ void PrepareGameMedia(byte myid, bool SaveNR)
 		}
 	}
 
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		if (PINFO[i].name[0] || i < NPlayers || PINFO[i].MapStyle)
 		{
@@ -11751,7 +11751,7 @@ void PrepareGameMedia(byte myid, bool SaveNR)
 			{
 				int gid = PINFO[i].GroupID;
 				byte mas = 0;
-				for (int j = 0; j < 7; j++)
+				for (int j = 0; j < 8; j++)
 				{
 					if (PINFO[j].name[0] || j < NPlayers || PINFO[j].MapStyle)
 					{
@@ -11821,7 +11821,7 @@ void PrepareGameMedia(byte myid, bool SaveNR)
 		}
 		else
 		{
-			for (int i = NPlayers; i < 7; i++)
+			for (int i = NPlayers; i < 8; i++)
 			{
 				if (COMPSTART[i])
 				{
@@ -11900,7 +11900,7 @@ void PrepareGameMedia(byte myid, bool SaveNR)
 		int N = NATIONS[0].NUpgrades;
 		for (int i = 0; i < N; i++)
 		{
-			for (int NI = 0; NI < 7; NI++)
+			for (int NI = 0; NI < 8; NI++)
 			{
 				NewUpgrade* NU = NATIONS[NI].UPGRADE[i];
 				if ((!NU->Done) && NU->Options & 8)
@@ -12256,7 +12256,7 @@ bool ProcessSingleMission(int n, int Diff)
 	InitGame();
 	ItemChoose = mcmSingle;
 
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		CITY[i].Difficulty = Diff;
 		PINFO[i].ColorID = i;
@@ -12736,7 +12736,7 @@ HHH1:
 			CreateNationalMaskForMap(CurrentMap);
 			PrepareGameMedia(0, 0);
 			InitGame();
-			for (int i = 0; i < 7; i++)
+			for (int i = 0; i < 8; i++)
 			{
 				CITY[i].Difficulty = DIFF->CurLine;
 				PINFO[i].ColorID = i;
@@ -13196,7 +13196,7 @@ bool ShowStatistics()
 void CreateCommName(byte Nat, char* Res)
 {
 	Res[0] = 0;
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		if (NatRefTBL[i] == Nat)
 		{
@@ -13259,7 +13259,7 @@ int ShowStatScreen(bool Next, bool Prev, byte Kind)
 
 	if (Kind)
 	{//Score timeline
-		for (int k = 0; k < 7; k++)
+		for (int k = 0; k < 8; k++)
 		{
 			Val[k] = NATIONS[k].Account;
 			NVal[k] = NATIONS[k].NAccount;
@@ -13268,7 +13268,7 @@ int ShowStatScreen(bool Next, bool Prev, byte Kind)
 	}
 	else
 	{//Population and upgrades timeline
-		for (int k = 0; k < 7; k++)
+		for (int k = 0; k < 8; k++)
 		{
 			Val[k] = NATIONS[k].Popul;
 			NVal[k] = NATIONS[k].NPopul;
@@ -13276,7 +13276,7 @@ int ShowStatScreen(bool Next, bool Prev, byte Kind)
 		Header = GetTextByID("ST_MAX");
 	}
 
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		int max = 0;
 		Nation* NT = NATIONS + i;
@@ -13662,7 +13662,7 @@ int ShowUserStat(bool Prev, bool Next)
 	ListBox* LB = STAT.addListBox(nullptr, x + 25, y + 35, 30, 180, 26, &WhiteFont, &YellowFont, nullptr);
 	byte NATS[8];
 	int NNAT = 0;
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		int max = 0;
 		Nation* NT = NATIONS + i;
@@ -14807,7 +14807,7 @@ bool CheckFlagsNeed()
 	byte Mask = NATIONS[NatRefTBL[MyNation]].NMask;
 
 	int N = 0;
-	for (int i = 0; i < 7; i++)
+	for (int i = 0; i < 8; i++)
 	{
 		if (NATIONS[i].NMask & Mask && NATIONS[i].VictState != 1 && NATIONS[i].VictState != 2)
 		{

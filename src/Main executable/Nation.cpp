@@ -1314,7 +1314,7 @@ void WinnerControl(bool Anyway) {
 		auto processRange = [&](int start, int end, WinnerControlResult& result) {
 			for (int i = start; i < end; i++) {
 				OneObject* OB = Group[i];
-				if (OB && UnLockN[OB->NNUM] && OB->NNUM != 7 && !(OB->Sdoxlo && !OB->Hidden)) {
+				if (OB && UnLockN[OB->NNUM] && OB->NNUM != 8 && !(OB->Sdoxlo && !OB->Hidden)) {
 					byte USE = OB->newMons->Usage;
 					if (USE == PeasantID) {
 						if (OB->Nat->AI_Enabled) {
@@ -1841,7 +1841,7 @@ void EnumPopulation() {
 	}
 
 	// Запись результатов в NATIONS
-	for (int i = 0; i < 7; i++) {
+	for (int i = 0; i < 8; i++) {
 		NATIONS[i].AddPopul(NMN[i]);
 	}
 }

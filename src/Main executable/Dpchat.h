@@ -4,14 +4,15 @@
  *
  *  File:       dpchat.h
  *  Content:	Header file for dpchat.cpp
- *
+ *  Updated MR.CODERMAN 2025
+ * 
  ***************************************************************************/
 
 #define IDIRECTPLAY2_OR_GREATER
 #include "dplay.h"
 
 // constants
-const DWORD MAXPLAYERS = 7;			// max no. players in the session
+const DWORD MAXPLAYERS = 8;			// max no. players in the session
 
 // structure used to store DirectPlay information
 typedef struct {
