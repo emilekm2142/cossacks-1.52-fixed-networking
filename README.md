@@ -19,6 +19,22 @@ Improved Graphics and Interface Updated textures and UI make the game easier on 
 
 **The issue with music playback in the game has been resolved.**
 
+
+# ** Added support for 8 players in random map mode. **
+
+Color — Brown.
+
+The game resources do not fully support an 8th nation on the map, so there are limitations:
+
+    • The brown player must be an ally of one of the existing players.
+
+    • Brown peasants will spawn near their ally.
+
+    • If no ally is specified, the brown player will be unable to build structures and will be unplayable.
+
+ The ally can be either a player or an AI.
+  
+
 # Integrated Mods:
 **Mod 1**
 
@@ -245,6 +261,19 @@ If you happen to come across any archive on the web, you may need the following 
 **Улучшен AI (AI Pack). Теперь Боты намного сложнее.**
 
 **Решена проблема с воспроизведением музыки в игре.**
+
+# ** Добавлена поддержка 8 игроков в режиме случайной карты. **
+Цвет — коричневый.  
+В ресурсах игры нет полноценной поддержки 8-й нации на карте, поэтому есть ограничения:
+
+    • Коричневый игрок обязательно должен быть союзником одного из существующих игроков.  
+
+    • Крестьяне коричневого цвета будут появляться рядом с союзником.  
+
+    • Если союзник не указан, коричневый игрок не сможет строить здания и будет недоступен для игры.  
+
+ Союзником может быть как игрок, так и AI.  
+
 
 # Интегрированы моды:
 
