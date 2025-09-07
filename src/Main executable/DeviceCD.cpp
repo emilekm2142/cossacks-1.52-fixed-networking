@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "ResFile.h"
 #include "gFile.h"
+#include <SDL.h>
 #include <SDL_mixer.h>
 
 #ifdef _DEBUG
@@ -50,9 +51,13 @@ CDeviceCD::CDeviceCD()
     // Инициализация SDL_mixer (один раз)
     if (!SDL_Mixer_Initialized) {
         if (Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 4096) < 0) {
-            MessageBox(hwnd, Mix_GetError(), "Mix_OpenAudio failed", MB_ICONERROR);
+            SDL_QuitSubSystem(SDL_INIT_AUDIO);
+            SDL_setenv("SDL_AUDIODRIVER", "dummy", 1);
+            SDL_InitSubSystem(SDL_INIT_AUDIO);
+            Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 4096);
         }
         Mix_ChannelFinished(channelFinished);
+
         SDL_Mixer_Initialized = true;
     }
 
@@ -66,6 +71,7 @@ CDeviceCD::CDeviceCD()
 
     Open();
 }
+
 
 CDeviceCD::~CDeviceCD()
 {

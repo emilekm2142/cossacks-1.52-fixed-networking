@@ -59,18 +59,27 @@ void CDirSound::CreateDirSound(HWND hWnd) {
     }
 
     if (SDL_Init(SDL_INIT_AUDIO) < 0) {
-        return;
+        SDL_setenv("SDL_AUDIODRIVER", "dummy", 1);
+        if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+            return;
+        }
     }
 
     if (Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 2048) < 0) {
-        SDL_Quit();
-        return;
+        SDL_QuitSubSystem(SDL_INIT_AUDIO);
+        SDL_setenv("SDL_AUDIODRIVER", "dummy", 1);
+        if (SDL_InitSubSystem(SDL_INIT_AUDIO) < 0 ||
+            Mix_OpenAudio(22050, AUDIO_S16SYS, 2, 2048) < 0) {
+            SDL_Quit();
+            return;
+        }
     }
 
     m_pDirectSoundObj = (void*)1;
     Mix_AllocateChannels(MAXSND1);
     InitAudio(m_iniPath);
 }
+
 
 void CDirSound::InitAudio(const std::string& iniPath) {
     int pos = GetPrivateProfileIntA("Audio Options", "MusicVolume", MaxSlider, iniPath.c_str());
