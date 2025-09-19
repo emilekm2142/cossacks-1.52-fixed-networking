@@ -121,6 +121,14 @@ This is Cossacks: Back to War 1.52 Classic Edition
 
 This version does not include built-in add-ons, but all new cheat codes work as they are embedded in the game engine, not in the game resources.
 
+# 🚨 Troubleshooting
+
+Create an empty text file named wine in the game folder if crashes occur on Windows.
+
+Create an empty text file named novsync to disable vertical synchronization.
+
+Try one of these solutions, or both in exceptional cases.
+
 # 🍷 Installation on macOS via CrossOver
 
 For macOS users, ready-made bottles (.cxarchive) are available, allowing you to run the game without manual setup:
@@ -357,6 +365,15 @@ By supporting developers and purchasing games legally, you contribute to the dev
 📥 Она доступна в отдельном архиве: [ Скачать классическую версию](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/Cossacks%20Back%20to%20War%20v1.52%20Classic%20Edition.zip) 
 
 В этой версии нет встроенных дополнений, но работают все новые чит-коды, так как они прописаны в движке, а не в ресурсах игры.
+
+# 🚨 Решение проблем
+
+ Создайте пустой текстовый файл wine в папке с игрой, если наблюдаются вылеты на Windows.
+
+ Создайте пустой текстовый файл novsync для отключения вертикальной синхронизации.
+
+ Попробуйте одно из данных решений или оба в исключительных случаях.
+
 
 # 🍷 Установка на macOS через CrossOver
 
