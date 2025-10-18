@@ -15,6 +15,11 @@ Improved Graphics and Interface Updated textures and UI make the game easier on 
 
 **Fixed Water and Nation Color Bugs Visual issues related to water and nation colors have been corrected — everything now looks just like in the original game.**
 
+**The ability to target buildings through the fog of war has been restored, preserving familiar online game tactics and enhancing gameplay.**
+
+**In the Diplomatic Center, you can now order multiple infinities of units of the same type at once—for example, three infinities of infantry and one infinity of archers—so that the output will be three infantry units and one archer.**
+
+
 **AI has been improved (AI Pack). Bots are now much more challenging.**
 
 **The issue with music playback in the game has been resolved.**
@@ -257,6 +262,10 @@ By supporting developers and purchasing games legally, you contribute to the dev
 **Вертикальная синхронизация включена по умолчанию.**
 
 **Исправлены баги с цветами воды и наций. Теперь всё как в оригинальной игре.**
+
+**Вернули возможность протыкания построек через туман войны, что сохранит привычные тактики онлайн-игры и улучшит геймплей.**
+
+**В дипломатическом центре теперь можно заказывать сразу несколько бесконечностей юнитов одного типа одновременно, например три бесконечности пехотинцев и одну бесконечность лучников, чтобы на выходе получалось три пехотинца и один лучник.**
 
 **Улучшен AI (AI Pack). Теперь Боты намного сложнее.**
 
