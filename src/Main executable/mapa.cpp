@@ -3786,7 +3786,9 @@ void HandleMouse(int x, int y)
 
 		if (Lpressed && !mini)
 		{
-			if (FogMode && GetFog(gx, gy * 2) < 900)
+			if (false) // Restored the ability to click through the fog of war
+
+		//if (FogMode && GetFog(gx, gy * 2) < 900) // Re-enabled fog of war click-blocking
 			{
 				//Clicked area is hidden behind fog of war
 				//Do NOT reveal enemy location through hints
