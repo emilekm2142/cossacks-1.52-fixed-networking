@@ -17,7 +17,7 @@ Improved Graphics and Interface Updated textures and UI make the game easier on 
 
 **The ability to target buildings through the fog of war has been restored, preserving familiar online game tactics and enhancing gameplay.**
 
-**In the Diplomatic Center, you can now order multiple infinities of units of the same type at once—for example, three infinities of infantry and one infinity of archers—so that the output will be three infantry units and one archer.**
+**In the Diplomatic Center, you can now order multiple infinities of units of the same type at once—for example, three infinities of infantry and one infinity of archers—so that the output will be three infantry units and one archer. (Thanks for the idea and testing by [slovnoslon](https://www.youtube.com/@Slovnoslon) )  **
 
 
 **AI has been improved (AI Pack). Bots are now much more challenging.**
@@ -267,7 +267,7 @@ By supporting developers and purchasing games legally, you contribute to the dev
 
 **Вернули возможность протыкания построек через туман войны, что сохранит привычные тактики онлайн-игры и улучшит геймплей.**
 
-**В дипломатическом центре теперь можно заказывать сразу несколько бесконечностей юнитов одного типа одновременно, например три бесконечности пехотинцев и одну бесконечность лучников, чтобы на выходе получалось три пехотинца и один лучник.**
+**В дипломатическом центре теперь можно заказывать сразу несколько бесконечностей юнитов одного типа одновременно, например три бесконечности пехотинцев и одну бесконечность лучников, чтобы на выходе получалось три пехотинца и один лучник.** (Благодарность за идею и тестирование блогера [slovnoslon](https://www.youtube.com/@Slovnoslon) )
 
 **Улучшен AI (AI Pack). Теперь Боты намного сложнее.**
 
