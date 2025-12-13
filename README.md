@@ -255,6 +255,10 @@ Code usage recommendations: It is recommended to use the code of version 1.52 as
 
 Manual project build: To manually build the project, use Visual Studio 2019 and Windows 11. All necessary files for building are in the Source archive. 🔧
 
+Modding and Mission Development Tools:
+A set of utilities for working with game archives and for creating/editing missions is available [here](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/tools.zip).
+
+
 The repository for Cossacks: Back to War 1.52 Legacy Edition is available [here](https://github.com/MisterCoderman/Cossacks2025-Legacy)
 
 
@@ -541,6 +545,10 @@ By supporting developers and purchasing games legally, you contribute to the dev
 Рекомендации по использованию кода: Рекомендуется использовать код версии 1.52 как основу для будущих версий игры, так как она является самой стабильной и улучшенной версией по сравнению с 1.42. 📂
 
 Сборка проекта вручную: Для сборки проекта вручную используйте Visual Studio 2019 и Windows 11. Все необходимые файлы для сборки находятся в архиве Source. 🔧
+
+Инструменты для моддинга и разработки миссий:
+Комплект утилит для работы с игровыми архивами и создания/редактирования миссий доступен [здесь](https://archive.org/download/cossacks-back-to-war-v-1.52-2025_202506/tools.zip).
+
 
 Репозиторий версии Cossacks: Back to War 1.52 Legacy Edition находится [здесь](https://github.com/MisterCoderman/Cossacks2025-Legacy)
 
