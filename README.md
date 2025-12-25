@@ -1,7 +1,7 @@
 *[Информация на русском языке](#rus)*
 
 
-# 🌟 Cossacks: Back to War 1.52 — Updated Version for 2025
+# 🌟 Cossacks: Back to War 1.52
 
 If you love classic strategy games, Cossacks: Back to War is a genre classic. However, it may not work properly on modern computers. The 1.52 update by MR.CODERMAN addresses this issue by improving the game's stability and compatibility. 🌍
 #  🔧 What’s New in Version 1.52?
@@ -17,7 +17,8 @@ Improved Graphics and Interface Updated textures and UI make the game easier on 
 
 **The ability to target buildings through the fog of war has been restored, preserving familiar online game tactics and enhancing gameplay.**
 
-**In the Diplomatic Center, you can now order multiple infinities of units of the same type at once—for example, three infinities of infantry and one infinity of archers—so that the output will be three infantry units and one archer. (Thanks for the idea and testing by [slovnoslon](https://www.youtube.com/@Slovnoslon) )  **
+**In the Diplomatic Center, you can now order multiple infinities of units of the same type at once—for example, three infinities of infantry and one infinity of archers—so that the output will be three infantry units and one archer. (Thanks for the idea and testing by [slovnoslon](https://www.youtube.com/@Slovnoslon) )**
+**The issue with the "Great Road" mission has been fixed. It is now fully passable.**
 
 
 **AI has been improved (AI Pack). Bots are now much more challenging.**
@@ -275,7 +276,7 @@ By supporting developers and purchasing games legally, you contribute to the dev
 <hr>
 
 <a name="rus"></a>
-# 🌟 Казаки: Снова Война 1.52 — Обновлённая версия 2025 года
+# 🌟 Казаки: Снова Война 1.52
 
 Если вы любите старые стратегические игры, то «Казаки: Снова Война» — это классика жанра. Однако на современных компьютерах она может не работать должным образом. Обновление версии 1.52 от MR.CODERMAN решает эту проблему, улучшая стабильность и совместимость игры. 🌍
 
@@ -293,7 +294,9 @@ By supporting developers and purchasing games legally, you contribute to the dev
 
 **Вернули возможность протыкания построек через туман войны, что сохранит привычные тактики онлайн-игры и улучшит геймплей.**
 
-**В дипломатическом центре теперь можно заказывать сразу несколько бесконечностей юнитов одного типа одновременно, например три бесконечности пехотинцев и одну бесконечность лучников, чтобы на выходе получалось три пехотинца и один лучник.** (Благодарность за идею и тестирование блогера [slovnoslon](https://www.youtube.com/@Slovnoslon) )
+**В дипломатическом центре теперь можно заказывать сразу несколько бесконечностей юнитов одного типа одновременно, например три бесконечности пехотинцев и одну бесконечность лучников, чтобы на выходе получалось три пехотинца и один лучник. (Благодарность за идею и тестирование блогера [slovnoslon](https://www.youtube.com/@Slovnoslon) )**
+
+**Исправлена проблема с миссией "Большая дорога". Теперь её возможно пройти полностью.**
 
 **Улучшен AI (AI Pack). Теперь Боты намного сложнее.**
 
