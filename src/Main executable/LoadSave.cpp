@@ -64,6 +64,11 @@ extern bool MiniMade;
 void SetSumms();
 extern bool SetDestMode;
 void ClearUniCash();
+int   g_CMSRestoreCount = 0;
+int   g_CMSRestoreIndex = 0;
+void** g_CMSRestoreZone = nullptr;
+int* g_CMSRestoreSize = nullptr;
+
 
 class SaveBuf
 {
@@ -2738,16 +2743,13 @@ void SaveMission( SaveBuf* SB )
 	xBlockWrite( SB, &SCENINF.LooseGame, 1 );
 }
 
-// Поставь какой-нибудь безопасный лимит, чтобы битый сейв не разнёс всё.
-// Если знаешь реальный максимум — подставь его.
-static const int MAX_SCEN_SAVES = 512;
-
 void LoadMission(SaveBuf* SB)
 {
+	const int MAX_SCEN_SAVES_LOCAL = 512;
+
 	int cms = -1;
 	xBlockRead(SB, &cms, 4);
 
-	// В СЕЙВЕ тут лежит SCENINF.hLib (4 байта), а не "длина"
 	int saved_hLib = 0;
 	xBlockRead(SB, &saved_hLib, 4);
 
@@ -2774,34 +2776,54 @@ void LoadMission(SaveBuf* SB)
 	int ns = 0;
 	xBlockRead(SB, &ns, 4);
 
-	// защита от бреда в сейве
 	if (ns < 0) ns = 0;
-	if (ns > MAX_SCEN_SAVES) ns = MAX_SCEN_SAVES;
+	if (ns > MAX_SCEN_SAVES_LOCAL) ns = MAX_SCEN_SAVES_LOCAL;
 
-	SCENINF.NSaves = ns;
+
+	int regCount = SCENINF.NSaves;
+	if (regCount < 0) regCount = 0;
+
+	byte skipBuf[1024];
 
 	for (int i = 0; i < ns; i++)
 	{
 		int sz = 0;
 		xBlockRead(SB, &sz, 4);
-
 		if (sz < 0) sz = 0;
-		SCENINF.SaveSize[i] = sz;
 
-		if (sz > 0)
+		if (i < regCount && SCENINF.SaveZone && SCENINF.SaveZone[i] && SCENINF.SaveSize)
 		{
+			int varSize = SCENINF.SaveSize[i];
+			if (varSize < 0) varSize = 0;
 
-			SCENINF.SaveZone[i] = (byte*)malloc(sz);
-			if (!SCENINF.SaveZone[i])
+			int toRead = sz;
+			if (varSize < toRead) toRead = varSize;
+			if (toRead < 0) toRead = 0;
+
+			if (toRead > 0)
 			{
-				LOutErr("Save corrupted (SaveZone alloc failed).");
-				return;
+				xBlockRead(SB, SCENINF.SaveZone[i], toRead);
 			}
-			xBlockRead(SB, SCENINF.SaveZone[i], sz);
+
+			int remain = sz - toRead;
+			while (remain > 0)
+			{
+				int chunk = remain;
+				if (chunk > (int)sizeof(skipBuf)) chunk = (int)sizeof(skipBuf);
+				xBlockRead(SB, skipBuf, chunk);
+				remain -= chunk;
+			}
 		}
 		else
 		{
-			SCENINF.SaveZone[i] = nullptr;
+			int remain = sz;
+			while (remain > 0)
+			{
+				int chunk = remain;
+				if (chunk > (int)sizeof(skipBuf)) chunk = (int)sizeof(skipBuf);
+				xBlockRead(SB, skipBuf, chunk);
+				remain -= chunk;
+			}
 		}
 	}
 
@@ -2851,6 +2873,10 @@ void LoadMission(SaveBuf* SB)
 		LockPause = 1;
 	}
 }
+
+
+
+
 
 
 void SaveCost( SaveBuf* SB )
