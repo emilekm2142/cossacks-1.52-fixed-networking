@@ -242,6 +242,12 @@ To avoid entering this variable every time, you can add it to the configuration 
 
 
 
+# Fixed Networking (Fork by emilekm2142)
+
+**Direct TCP/IP now uses CommCore (UDP) instead of DirectPlay.** Previously, the "Direct TCP/IP" multiplayer option (where you enter an IP address) used DirectPlay, which fails behind symmetric NAT and VPNs like Hamachi. This fork reroutes Direct TCP/IP connections through CommCore's UDP-based networking stack (port 34000), enabling reliable connections over Hamachi and similar VPN tools.
+
+**Stone mining upgrade cap raised from 400% to 800%.** The academy stone efficiency upgrades compound multiplicatively, which was capped at 400%. The cap has been raised to 800% to allow the full effect of both upgrades.
+
 #  🙏 Acknowledgments
 
 I would like to thank the esteemed ereb-thanatos for the massive work on version 1.42. GitHub repository [ereb-thanatos](https://github.com/ereb-thanatos/cossacks-revamp-2017)
